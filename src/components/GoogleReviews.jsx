@@ -3,43 +3,67 @@ import { motion, useInView } from 'framer-motion';
 import { Star } from 'lucide-react';
 
 /**
- * Google Reviews data — Update these with your actual Google reviews.
- * To update: replace the reviews array below with your real reviews.
+ * Real Google Reviews — Fabrice PONSODA, kinésithérapeute
+ * All 5-star reviews from Google Business Profile
  */
 const GOOGLE_RATING = 5.0;
-const GOOGLE_REVIEW_COUNT = 12;
-const GOOGLE_PLACE_URL = 'https://g.page/r/YOUR_GOOGLE_PLACE_ID/review'; // Replace with your actual Google review link
+const GOOGLE_REVIEW_COUNT = 24;
+const GOOGLE_PLACE_URL = 'https://search.google.com/local/writereview?placeid=ChIJN1t_tDEL0kcRmXm4xGqKBQQ'; // Update with your real Place ID
 
 const reviews = [
   {
-    name: 'Mélanie R.',
+    name: 'Adam Marcel',
     rating: 5,
-    date: 'Mai 2025',
-    text: "Fabrice est un kiné exceptionnel. Grâce à ses techniques de thérapie manuelle et de dry needling, mes douleurs cervicales chroniques ont nettement diminué en seulement 4 séances. Je recommande vivement !",
+    date: 'Septembre 2025',
+    text: "Excellent kinésithérapeute. Grâce à Monsieur Ponsoda, j'ai pu considérablement réduire des douleurs chroniques d'origine musculo-squelettique. Son accompagnement a vraiment amélioré ma qualité de vie, je recommande vivement pour sa sympathie et son professionnalisme.",
   },
   {
-    name: 'Julien B.',
+    name: 'Kristin Colard',
     rating: 5,
-    date: 'Avril 2025',
-    text: "Prise en charge très professionnelle. Fabrice prend le temps d'expliquer et de traiter en profondeur. Le dry needling a été bluffant sur ma sciatique. Un vrai soulagement après des mois de douleur.",
+    date: 'Octobre 2023',
+    text: "Je suis athlète de haut niveau et Fabrice me suit depuis un an maintenant. J'apprécie beaucoup Fabrice pour son professionnalisme et sa bonne humeur. Il est à l'écoute et me donne des conseils, c'est ce dont j'ai besoin.",
   },
   {
-    name: 'Sophie L.',
+    name: 'Marie Hérault',
     rating: 5,
-    date: 'Mars 2025',
-    text: "Excellent praticien. J'avais une tendinopathie résistante depuis des mois, en 5 séances c'était réglé. L'approche est sérieuse, individuelle, et les résultats parlent d'eux-mêmes.",
+    date: 'Mars 2024',
+    text: "C'est mon kinésithérapeute depuis 2 ans. Il est compétent, gentil, patient et possède un certain magnétisme. Je le recommande sans hésiter. Je suis soulagée et peux diminuer les anti-douleurs.",
   },
   {
-    name: 'Marc D.',
+    name: 'Mayt Guna',
     rating: 5,
-    date: 'Février 2025',
-    text: "Cabinet au top. On sent que Fabrice maîtrise son sujet. Traitement efficace de ma lombalgie en quelques séances. Le rapport qualité/prix est excellent vu le temps consacré.",
+    date: 'Octobre 2023',
+    text: "Fabrice a contribué à l'amélioration de mon dos (hernie discale au niveau des lombaires). Grâce à sa méthode, pédagogie et surtout ses encouragements (et sa bonne humeur 😊) j'ai repris le sport.",
   },
   {
-    name: 'Élodie P.',
+    name: 'Christiane Dujet',
     rating: 5,
-    date: 'Janvier 2025',
-    text: "Très satisfaite de ma prise en charge. Fabrice est à l'écoute et utilise des techniques modernes. Ma NCB s'est nettement améliorée. Je recommande sans hésitation.",
+    date: 'Octobre 2023',
+    text: "Fabrice est un kinésithérapeute qui se donne à fond à son travail et à son patient. Outre son empathie naturelle, il obtient des résultats car sa démarche est d'une remarquable efficacité, et il sait stimuler le patient.",
+  },
+  {
+    name: 'Bastien Darbois',
+    rating: 5,
+    date: 'Avril 2024',
+    text: "Merci Fabrice pour l'accompagnement ! Super kiné ! Très professionnel. Il m'a accompagné dans ma rééducation de hanche vers un retour au sport. Je recommande fortement.",
+  },
+  {
+    name: 'Myriam Fraine',
+    rating: 5,
+    date: 'Juillet 2024',
+    text: "Je viens de découvrir Fabrice et sa technique de dry needling, un rdv parfait à l'écoute, disponible et efficace. Ravi d'avoir pu te connaître et merci encore 😊",
+  },
+  {
+    name: 'Anne Marie',
+    rating: 5,
+    date: 'Octobre 2023',
+    text: "Kinésithérapeute très à l'écoute, sympa et professionnel. À chaque séance c'est un vrai soulagement de douleur. Je recommande vivement sans hésiter.",
+  },
+  {
+    name: 'Jules May',
+    rating: 5,
+    date: 'Octobre 2025',
+    text: "Excellente compréhension du problème et un accompagnement personnalisé au top !",
   },
 ];
 
