@@ -35,35 +35,57 @@ const BrignaisBooking = () => {
 
         <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
 
-          {/* Doctolib widget */}
+          {/* Doctolib CTA */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 1, delay: 0.2 }}
-            className="border border-white/5 relative overflow-hidden bg-white"
+            className="border border-white/5 relative overflow-hidden bg-deep-black flex flex-col items-center justify-center p-10"
             style={{ clipPath: 'polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px))' }}
           >
-            <iframe
-              id="doctolib-widget"
-              src="https://www.doctolib.fr/masseur-kinesitherapeute/lyon/fabrice-ponsoda?pid=practice-749098"
-              width="100%"
-              height="500"
-              style={{ border: 'none', display: 'block' }}
-              title="Prendre rendez-vous avec Fabrice Ponsoda — Doctolib"
-              loading="lazy"
-              allow="payment"
-            />
-            <div className="bg-deep-black p-3 text-center">
-              <a
-                href="https://www.doctolib.fr/masseur-kinesitherapeute/lyon/fabrice-ponsoda"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => window.gtag?.('event', 'cta_doctolib', { event_category: 'conversion', event_label: 'booking_section' })}
-                className="text-gold hover:text-gold-light text-xs uppercase tracking-wider font-medium transition-colors duration-300"
-              >
-                Ouvrir sur Doctolib →
-              </a>
+            {/* Glow effect */}
+            <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 30%, rgba(0,127,242,0.08) 0%, transparent 60%)' }} />
+
+            {/* Doctolib logo */}
+            <div className="relative z-10 mb-8">
+              <div className="w-20 h-20 mx-auto rounded-2xl bg-[#107ACA] flex items-center justify-center shadow-lg shadow-[#107ACA]/20">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" className="text-white">
+                  <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" />
+                  <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="M9 15l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
             </div>
+
+            <h3 className="relative z-10 text-off-white font-display text-2xl font-bold mb-2 text-center">
+              Réservez en ligne
+            </h3>
+            <p className="relative z-10 text-off-white/40 text-sm font-light mb-8 text-center max-w-xs">
+              Choisissez votre créneau directement sur Doctolib. Consultation individuelle de 30 minutes.
+            </p>
+
+            <motion.a
+              href="https://www.doctolib.fr/masseur-kinesitherapeute/lyon/fabrice-ponsoda"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.04, boxShadow: '0 0 30px rgba(0,127,242,0.3)' }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => window.gtag?.('event', 'cta_doctolib', { event_category: 'conversion', event_label: 'booking_section' })}
+              className="relative z-10 inline-flex items-center gap-3 bg-[#107ACA] text-white px-8 py-4 font-bold uppercase tracking-[0.12em] text-sm transition-all duration-300 hover:bg-[#0D6AB6]"
+              style={{ clipPath: 'polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))' }}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-white">
+                <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" />
+                <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" strokeWidth="1.5" />
+              </svg>
+              Prendre rendez-vous
+            </motion.a>
+
+            <p className="relative z-10 text-off-white/20 text-[10px] mt-4 tracking-wider uppercase">via Doctolib</p>
           </motion.div>
 
           {/* Info cards */}
