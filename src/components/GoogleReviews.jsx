@@ -8,7 +8,7 @@ import { Star } from 'lucide-react';
  */
 const GOOGLE_RATING = 5.0;
 const GOOGLE_REVIEW_COUNT = 24;
-const GOOGLE_PLACE_URL = 'https://share.google/KSamxSoSmBWvTeh1Z';
+const GOOGLE_PLACE_URL = 'https://g.page/r/CQpO3z32oFiiEAE/review';
 
 const reviews = [
   {
