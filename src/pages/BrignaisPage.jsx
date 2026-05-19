@@ -8,6 +8,7 @@ import DryNeedlingDetailedSection from '@/components/DryNeedlingDetailedSection'
 import ManualTherapyDetailedSection from '@/components/ManualTherapyDetailedSection';
 import BrignaisApproach from '@/components/brignais/BrignaisApproach';
 import BrignaisPricing from '@/components/brignais/BrignaisPricing';
+import GoogleReviews from '@/components/GoogleReviews';
 import BrignaisBooking from '@/components/brignais/BrignaisBooking';
 
 const BrignaisPage = () => {
@@ -97,6 +98,7 @@ const BrignaisPage = () => {
       <ManualTherapyDetailedSection />
       <BrignaisApproach />
       <BrignaisPricing />
+      <GoogleReviews />
       <BrignaisBooking />
     </>
   );
