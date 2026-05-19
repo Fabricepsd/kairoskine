@@ -99,13 +99,15 @@ RÈGLES (TRÈS IMPORTANT) :
 - Garder les réponses concises (3-5 phrases max sauf si nécessaire).
 - Si on te demande des infos sur le cabinet de Martinique, préciser que cette page concerne le cabinet de Brignais.`;
 
-const MISTRAL_URL = `https://api.mistral.ai/v1/chat/completions`;
-
 const WHATSAPP_NUMBER = '33695703906';
 const WHATSAPP_MESSAGE = encodeURIComponent('Bonjour Fabrice, je vous contacte depuis votre site KAIROS KINÉ. ');
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
 
-const sendToMistral = async (messages, apiKey, systemPrompt) => {
+/**
+ * Sends chat messages to our serverless API route (/api/chat)
+ * The API key stays server-side — never exposed to the browser.
+ */
+const sendChatMessage = async (messages, systemPrompt) => {
     const history = [
         { role: 'system', content: systemPrompt },
         ...messages.map((m) => ({
@@ -114,26 +116,18 @@ const sendToMistral = async (messages, apiKey, systemPrompt) => {
         })),
     ];
 
-    const res = await fetch(MISTRAL_URL, {
+    const res = await fetch('/api/chat', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify({
-            model: 'mistral-small-latest',
-            messages: history,
-            temperature: 0.7,
-            max_tokens: 400,
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: history }),
     });
 
     if (!res.ok) {
         const errData = await res.json().catch(() => ({}));
-        throw new Error(`API ${res.status}: ${errData?.message || res.statusText}`);
+        throw new Error(errData?.error || `Erreur ${res.status}`);
     }
     const data = await res.json();
-    return data.choices?.[0]?.message?.content || "Je n'ai pas pu répondre. Veuillez réessayer.";
+    return data.reply || "Je n'ai pas pu répondre. Veuillez réessayer.";
 };
 
 const ContactHub = () => {
@@ -159,8 +153,6 @@ const ContactHub = () => {
     const bottomRef = useRef(null);
     const inputRef = useRef(null);
 
-    const apiKey = import.meta.env.VITE_MISTRAL_API_KEY;
-
     useEffect(() => {
         if (chatOpen) {
             setTimeout(() => inputRef.current?.focus(), 300);
@@ -173,10 +165,6 @@ const ContactHub = () => {
 
     const sendMessage = async () => {
         if (!input.trim() || loading) return;
-        if (!apiKey) {
-            setError('Clé API Mistral manquante. Vérifiez VITE_MISTRAL_API_KEY.');
-            return;
-        }
 
         const userMsg = { role: 'user', content: input.trim() };
         const newMessages = [...messages, userMsg];
@@ -186,7 +174,7 @@ const ContactHub = () => {
         setError(null);
 
         try {
-            const reply = await sendToMistral(newMessages, apiKey, systemPrompt);
+            const reply = await sendChatMessage(newMessages, systemPrompt);
             setMessages((prev) => [...prev, { role: 'assistant', content: reply }]);
         } catch (e) {
             setError(e.message || 'Erreur de connexion. Veuillez réessayer.');
