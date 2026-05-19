@@ -4,6 +4,7 @@ import { motion, useInView } from 'framer-motion';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { Clock, ArrowLeft, ArrowRight, Tag, User, Calendar, BookOpen, ExternalLink, FlaskConical } from 'lucide-react';
 import blogArticles from '@/data/blogArticles';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
 // Renders markdown-like bold text (**text**)
 const RichText = ({ children }) => {
@@ -222,11 +223,13 @@ const BlogArticlePage = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5 }}
+            className="mb-8"
           >
-            <Link to="/blog" className="inline-flex items-center gap-2 text-off-white/40 hover:text-gold text-xs tracking-[0.15em] uppercase transition-colors duration-300 mb-8">
-              <ArrowLeft className="size-3.5" />
-              Retour au blog
-            </Link>
+            <Breadcrumbs items={[
+              { label: 'Accueil', to: '/' },
+              { label: 'Blog', to: '/blog' },
+              { label: article.title },
+            ]} />
           </motion.div>
 
           <motion.div

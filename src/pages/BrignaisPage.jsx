@@ -9,6 +9,7 @@ import ManualTherapyDetailedSection from '@/components/ManualTherapyDetailedSect
 import BrignaisApproach from '@/components/brignais/BrignaisApproach';
 import BrignaisPricing from '@/components/brignais/BrignaisPricing';
 import GoogleReviews from '@/components/GoogleReviews';
+import FAQ from '@/components/FAQ';
 import BrignaisBooking from '@/components/brignais/BrignaisBooking';
 
 const BrignaisPage = () => {
@@ -99,6 +100,7 @@ const BrignaisPage = () => {
       <BrignaisApproach />
       <BrignaisPricing />
       <GoogleReviews />
+      <FAQ />
       <BrignaisBooking />
     </>
   );

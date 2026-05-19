@@ -4,6 +4,7 @@ import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Clock, ArrowRight, Tag, BookOpen } from 'lucide-react';
 import blogArticles from '@/data/blogArticles';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
 const ArticleCard = ({ article, index }) => {
   const ref = useRef(null);
@@ -162,6 +163,10 @@ const BlogPage = () => {
             className="max-w-3xl"
           >
             <div className="flex items-center gap-4 mb-6">
+              <Breadcrumbs items={[
+                { label: 'Accueil', to: '/' },
+                { label: 'Blog' },
+              ]} />
               <div className="h-[1px] w-12 bg-gold/50" />
               <span className="text-gold text-[10px] tracking-[0.3em] uppercase font-semibold">
                 Expertise & Savoir
