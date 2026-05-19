@@ -1,0 +1,8 @@
+node_modules
+dist
+.env
+.DS_Store
+*.local
+.vite
+kairos_kine_deploy.zip
+*.zip
