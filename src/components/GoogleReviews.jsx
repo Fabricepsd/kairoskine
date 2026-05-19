@@ -8,7 +8,7 @@ import { Star } from 'lucide-react';
  */
 const GOOGLE_RATING = 5.0;
 const GOOGLE_REVIEW_COUNT = 24;
-const GOOGLE_PLACE_URL = 'https://search.google.com/local/writereview?placeid=ChIJN1t_tDEL0kcRmXm4xGqKBQQ'; // Update with your real Place ID
+const GOOGLE_PLACE_URL = 'https://share.google/KSamxSoSmBWvTeh1Z';
 
 const reviews = [
   {
