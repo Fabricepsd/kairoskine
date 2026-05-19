@@ -35,41 +35,34 @@ const BrignaisBooking = () => {
 
         <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
 
-          {/* Doctolib widget placeholder */}
+          {/* Doctolib widget */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 1, delay: 0.2 }}
-            className="border border-white/5 relative min-h-[400px] overflow-hidden flex items-center justify-center bg-deep-black"
+            className="border border-white/5 relative overflow-hidden bg-white"
             style={{ clipPath: 'polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px))' }}
           >
-            <div className="text-center p-8">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gold/10 flex items-center justify-center">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-gold">
-                  <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" />
-                  <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" strokeWidth="1.5" />
-                </svg>
-              </div>
-              <h3 className="text-off-white font-semibold uppercase tracking-wider text-sm mb-3">
-                Doctolib
-              </h3>
-              <p className="text-off-white/40 text-sm font-light mb-6 max-w-xs mx-auto">
-                Le widget Doctolib sera intégré ici dès l'activation du profil Brignais.
-              </p>
-              <motion.a
-                href="https://www.doctolib.fr"
+            <iframe
+              id="doctolib-widget"
+              src="https://www.doctolib.fr/masseur-kinesitherapeute/lyon/fabrice-ponsoda?pid=practice-749098"
+              width="100%"
+              height="500"
+              style={{ border: 'none', display: 'block' }}
+              title="Prendre rendez-vous avec Fabrice Ponsoda — Doctolib"
+              loading="lazy"
+              allow="payment"
+            />
+            <div className="bg-deep-black p-3 text-center">
+              <a
+                href="https://www.doctolib.fr/masseur-kinesitherapeute/lyon/fabrice-ponsoda"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.04, boxShadow: '0 0 30px rgba(212,175,55,0.3)' }}
-                whileTap={{ scale: 0.97 }}
                 onClick={() => window.gtag?.('event', 'cta_doctolib', { event_category: 'conversion', event_label: 'booking_section' })}
-                className="inline-block bg-gold text-deep-black px-8 py-3.5 font-bold uppercase tracking-[0.12em] text-sm transition-all duration-300"
-                style={{ clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))' }}
+                className="text-gold hover:text-gold-light text-xs uppercase tracking-wider font-medium transition-colors duration-300"
               >
-                Voir sur Doctolib →
-              </motion.a>
+                Ouvrir sur Doctolib →
+              </a>
             </div>
           </motion.div>
 
