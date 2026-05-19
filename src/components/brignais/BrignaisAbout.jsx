@@ -47,7 +47,7 @@ const BrignaisAbout = () => {
                   className="absolute inset-0 bg-anthracite z-10"
                 />
                 <img
-                  src="/photofab.png?v=2"
+                  src="/photofab-opt.jpg"
                   alt="Fabrice PONSODA — Kinésithérapeute spécialisé Brignais"
                   className="w-full h-auto relative z-[1]"
                   style={{ display: 'block', maxHeight: '640px', objectFit: 'contain', objectPosition: 'bottom center', mixBlendMode: 'multiply' }}

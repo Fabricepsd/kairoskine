@@ -11,6 +11,7 @@ import PrivacyPolicy from '@/components/PrivacyPolicy';
 import NotFoundPage from '@/pages/NotFoundPage';
 import { Toaster } from '@/components/ui/toaster';
 import ContactHub from '@/components/ContactHub';
+import CookieConsent from '@/components/CookieConsent';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -45,6 +46,7 @@ function App() {
         <ContactHub />
 
         <Toaster />
+        <CookieConsent />
       </div>
     </BrowserRouter>
   );

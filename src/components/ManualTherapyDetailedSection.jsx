@@ -24,7 +24,7 @@ const TiltImageTM = ({ isInView }) => {
 
         <motion.div style={{ y: imgY }} className="will-change-transform">
           <img
-            src="/TM.png"
+            src="/TM-opt.jpg"
             alt="Thérapie manuelle — Fabrice PONSODA"
             className="w-full h-auto"
             style={{ display: 'block', mixBlendMode: 'multiply', maxHeight: '600px', objectFit: 'contain' }}
