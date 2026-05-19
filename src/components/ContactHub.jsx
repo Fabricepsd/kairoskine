@@ -302,7 +302,7 @@ const ContactHub = () => {
                         className="flex flex-col gap-3 mb-2 origin-bottom-right"
                     >
                         {/* WhatsApp Option */}
-                        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="flex items-center justify-end gap-3 group">
+                        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={() => window.gtag?.('event', 'cta_whatsapp', { event_category: 'conversion', event_label: 'contact_hub' })} className="flex items-center justify-end gap-3 group">
                             <span className="bg-anthracite border border-white/10 text-off-white text-xs px-3 py-2 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
                                 Écrire sur WhatsApp
                             </span>
@@ -314,7 +314,7 @@ const ContactHub = () => {
                         </a>
 
                         {/* Chat Option */}
-                        <button onClick={() => { setChatOpen(true); setMenuOpen(false); }} className="flex items-center justify-end gap-3 group">
+                        <button onClick={() => { setChatOpen(true); setMenuOpen(false); window.gtag?.('event', 'chatbot_open', { event_category: 'engagement', event_label: 'contact_hub' }); }} className="flex items-center justify-end gap-3 group">
                             <span className="bg-anthracite border border-white/10 text-off-white text-xs px-3 py-2 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
                                 Assistant IA
                             </span>

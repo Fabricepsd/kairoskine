@@ -64,6 +64,7 @@ const BrignaisBooking = () => {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.04, boxShadow: '0 0 30px rgba(212,175,55,0.3)' }}
                 whileTap={{ scale: 0.97 }}
+                onClick={() => window.gtag?.('event', 'cta_doctolib', { event_category: 'conversion', event_label: 'booking_section' })}
                 className="inline-block bg-gold text-deep-black px-8 py-3.5 font-bold uppercase tracking-[0.12em] text-sm transition-all duration-300"
                 style={{ clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))' }}
               >
@@ -107,7 +108,7 @@ const BrignaisBooking = () => {
                 </div>
                 <div>
                   <p className="text-gold/60 text-[9px] tracking-[0.3em] uppercase font-semibold mb-2">Téléphone</p>
-                  <a href="tel:+33695703906" className="text-off-white/80 text-sm font-light hover:text-gold transition-colors duration-300">
+                  <a href="tel:+33695703906" onClick={() => window.gtag?.('event', 'cta_phone', { event_category: 'conversion', event_label: 'booking_section' })} className="text-off-white/80 text-sm font-light hover:text-gold transition-colors duration-300">
                     06 95 70 39 06
                   </a>
                 </div>

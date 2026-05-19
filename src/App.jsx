@@ -8,6 +8,7 @@ import BlogPage from '@/pages/BlogPage';
 import BlogArticlePage from '@/pages/BlogArticlePage';
 import LegalNotices from '@/components/LegalNotices';
 import PrivacyPolicy from '@/components/PrivacyPolicy';
+import NotFoundPage from '@/pages/NotFoundPage';
 import { Toaster } from '@/components/ui/toaster';
 import ContactHub from '@/components/ContactHub';
 
@@ -36,6 +37,7 @@ function App() {
             <Route path="/blog/:slug" element={<BlogArticlePage />} />
             <Route path="/mentions-legales" element={<LegalNotices />} />
             <Route path="/confidentialite" element={<PrivacyPolicy />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
 
