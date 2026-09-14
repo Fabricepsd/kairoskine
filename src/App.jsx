@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import BrignaisPage from '@/pages/BrignaisPage';
 import BlogPage from '@/pages/BlogPage';
 import BlogArticlePage from '@/pages/BlogArticlePage';
+import EntreprisesPage from '@/pages/EntreprisesPage';
 import LegalNotices from '@/components/LegalNotices';
 import PrivacyPolicy from '@/components/PrivacyPolicy';
 import NotFoundPage from '@/pages/NotFoundPage';
@@ -36,6 +37,7 @@ function App() {
             <Route path="/brignais" element={<BrignaisPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:slug" element={<BlogArticlePage />} />
+            <Route path="/entreprises" element={<EntreprisesPage />} />
             <Route path="/mentions-legales" element={<LegalNotices />} />
             <Route path="/confidentialite" element={<PrivacyPolicy />} />
             <Route path="*" element={<NotFoundPage />} />

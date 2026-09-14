@@ -63,14 +63,25 @@ const Header = () => {
           {/* Logo */}
           <Link
             to="/"
-            className="group flex flex-col items-start relative"
+            className="group flex items-center gap-3 relative"
           >
-            <span className="font-display text-xl md:text-2xl font-bold text-off-white tracking-[0.15em] uppercase group-hover:text-gold transition-colors duration-300">
-              KAIROS
-            </span>
-            <span className="text-[9px] tracking-[0.35em] text-gold/70 uppercase font-sans font-medium mt-[-2px]">
-              BRIGNAIS
-            </span>
+            {/* Logo mark */}
+            <div className="relative shrink-0">
+              <img
+                src="/logo-kairos.jpg"
+                alt="KAIROS KINÉ logo"
+                className="h-9 w-9 md:h-10 md:w-10 rounded-full object-cover transition-all duration-300 group-hover:shadow-[0_0_14px_rgba(212,175,55,0.35)]"
+              />
+            </div>
+            {/* Brand name */}
+            <div className="flex flex-col">
+              <span className="font-display text-lg md:text-xl font-bold text-off-white tracking-[0.12em] uppercase group-hover:text-gold transition-colors duration-300 leading-none">
+                KAIROS
+              </span>
+              <span className="text-[8px] tracking-[0.35em] text-gold/70 uppercase font-sans font-medium mt-[1px]">
+                KINÉ
+              </span>
+            </div>
             <span className="absolute -bottom-1 left-0 h-[1px] bg-gold w-0 group-hover:w-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
           </Link>
 
@@ -99,6 +110,18 @@ const Header = () => {
             >
               Blog
               <span className={`absolute -bottom-0.5 left-0 h-[1px] bg-gold transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${activeLink === 'blog' || isBlogPage ? 'w-full' : 'w-0'
+                }`} />
+            </Link>
+
+            {/* Entreprises link */}
+            <Link
+              to="/entreprises"
+              onMouseEnter={() => setActiveLink('entreprises')}
+              onMouseLeave={() => setActiveLink(null)}
+              className={`relative text-xs lg:text-sm font-medium tracking-[0.08em] uppercase transition-colors duration-300 py-1 ${location.pathname === '/entreprises' ? 'text-gold' : 'text-gold/60 hover:text-gold'}`}
+            >
+              Entreprises
+              <span className={`absolute -bottom-0.5 left-0 h-[1px] bg-gold transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${activeLink === 'entreprises' || location.pathname === '/entreprises' ? 'w-full' : 'w-0'
                 }`} />
             </Link>
 
@@ -176,6 +199,21 @@ const Header = () => {
                   className={`font-display text-2xl font-light italic transition-colors ${isBlogPage ? 'text-gold' : 'text-off-white/80 hover:text-gold'}`}
                 >
                   Blog
+                </Link>
+              </motion.div>
+
+              {/* Entreprises mobile link */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: (navLinks.length + 1) * 0.07 }}
+              >
+                <Link
+                  to="/entreprises"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`font-display text-2xl font-light italic transition-colors ${location.pathname === '/entreprises' ? 'text-gold' : 'text-gold/60 hover:text-gold'}`}
+                >
+                  Entreprises
                 </Link>
               </motion.div>
 
