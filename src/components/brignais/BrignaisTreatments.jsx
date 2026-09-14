@@ -20,6 +20,7 @@ const notTreated = [
   'Entorses (phase aiguë)',
   'Rééducation périnéale / pelvi-périnéologie',
   'Kinésithérapie vestibulaire (vertiges)',
+  'Rééducation du poignet / de la main post-fracture',
 ];
 
 const BrignaisTreatments = () => {
