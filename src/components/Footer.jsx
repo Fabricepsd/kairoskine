@@ -18,9 +18,10 @@ const Footer = () => {
         <div className="text-center mb-14">
           <div className="flex flex-col items-center gap-3">
             <img
-              src="/logo-kairos.jpg"
+              src="/logo-kairos-transparent.png"
               alt="KAIROS KINÉ logo"
-              className="h-16 w-16 rounded-full object-cover shadow-[0_0_20px_rgba(212,175,55,0.15)]"
+              className="h-16 w-16 object-contain"
+              style={{ filter: 'drop-shadow(0 0 12px rgba(212,175,55,0.15))' }}
             />
             <div>
               <h3 className="font-display text-3xl md:text-4xl font-bold text-off-white tracking-[0.1em] uppercase mb-0.5">

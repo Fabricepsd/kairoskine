@@ -117,7 +117,7 @@ POINTS CLÉS À METTRE EN AVANT :
 - Réduction de l'absentéisme lié aux TMS
 - Conformité démarche DUERP (Document Unique d'Évaluation des Risques)
 - Protocole court et concret : résultats mesurables
-- Pas de contrainte logistique lourde : Fabrice se déplace en entreprise
+- Pas de contrainte logistique lourde : intervention directe en entreprise
 
 RÈGLES :
 - Ne jamais inventer de tarifs ni de plages horaires précises (à confirmer lors d'un échange).

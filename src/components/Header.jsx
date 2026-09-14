@@ -68,9 +68,9 @@ const Header = () => {
             {/* Logo mark */}
             <div className="relative shrink-0">
               <img
-                src="/logo-kairos.jpg"
+                src="/logo-kairos-transparent.png"
                 alt="KAIROS KINÉ logo"
-                className="h-9 w-9 md:h-10 md:w-10 rounded-full object-cover transition-all duration-300 group-hover:shadow-[0_0_14px_rgba(212,175,55,0.35)]"
+                className="h-9 w-9 md:h-10 md:w-10 object-contain transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]"
               />
             </div>
             {/* Brand name */}

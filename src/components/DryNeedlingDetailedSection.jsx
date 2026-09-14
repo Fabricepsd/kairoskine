@@ -5,8 +5,7 @@ import { Check } from 'lucide-react';
 const benefits = [
   'Perturbation mécanique des tissus contractés',
   'Stimulation nerveuse inhibant la douleur',
-  'Lavage des substances inflammatoires',
-  'Restauration de la vascularisation locale',
+  'Baisse de la tension musculaire globale',
   'Normalisation de l\'activité électrique',
   'Gain immédiat d\'amplitude articulaire',
 ];
