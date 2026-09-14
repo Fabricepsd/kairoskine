@@ -340,7 +340,7 @@ const BlogArticlePage = () => {
             Besoin d'un <span className="gold-gradient-text">avis clinique</span> ?
           </h2>
           <p className="text-off-white/50 font-light mb-8 max-w-md mx-auto text-sm">
-            Chaque douleur est unique. Prenez rendez-vous pour un bilan individuel de 30 minutes au cabinet de Brignais.
+            Chaque douleur est unique. Prenez rendez-vous pour un bilan individuel de 30 minutes au cabinet de Saint-Genis-Laval.
           </p>
           <Link
             to="/#brignais-booking"

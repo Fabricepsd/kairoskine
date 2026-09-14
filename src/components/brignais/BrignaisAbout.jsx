@@ -14,7 +14,7 @@ const BrignaisAbout = () => {
       {/* Watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
         <span className="font-display text-[200px] md:text-[280px] font-bold text-white/[0.015] select-none whitespace-nowrap">
-          BRIGNAIS
+          SAINT-GENIS
         </span>
       </div>
 

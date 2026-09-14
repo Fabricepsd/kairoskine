@@ -29,28 +29,28 @@ const BrignaisPage = () => {
   return (
     <>
       <Helmet>
-        <title>Kinésithérapeute Brignais, Lyon & Saint-Genis-Laval — Thérapie manuelle & Dry Needling | KAIROS KINÉ</title>
+        <title>Kinésithérapeute Saint-Genis-Laval, Lyon — Thérapie manuelle & Dry Needling | KAIROS KINÉ</title>
         <meta
           name="description"
-          content="Kinésithérapeute spécialisé à Brignais, proche Lyon et Saint-Genis-Laval. Thérapie manuelle structurelle, dry needling. Traitement court 5-8 séances. Conventionné + dépassement HN. RDV en ligne."
+          content="Kinésithérapeute spécialisé à Saint-Genis-Laval, proche Lyon et Oullins. Thérapie manuelle structurelle, dry needling. Traitement court 5-8 séances. Conventionné + dépassement HN. RDV en ligne."
         />
         <meta
           name="keywords"
-          content="kinésithérapeute, kiné, brignais, Lyon, Saint-Genis-Laval, douleurs musculo-squelettiques, dry needling, thérapie manuelle, cervicalgie, sciatique, lombalgie, tendinopathie, NCB, dépassement honoraires, Fabrice Ponsoda, KAIROS"
+          content="kinésithérapeute Saint-Genis-Laval, kiné Lyon, Oullins, douleurs musculo-squelettiques, dry needling, thérapie manuelle, cervicalgie, sciatique, lombalgie, tendinopathie, NCB, dépassement honoraires, Fabrice Ponsoda, KAIROS KINÉ"
         />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Fabrice PONSODA — KAIROS KINÉ" />
         <link rel="canonical" href="https://kairoskine.fr" />
 
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="KAIROS KINÉ — Kinésithérapeute Brignais, Lyon & Saint-Genis-Laval" />
-        <meta property="og:description" content="Thérapie manuelle, dry needling. Traitement court 5-8 séances. Prise en charge individuelle 30 min. Brignais, proche Lyon." />
+        <meta property="og:title" content="KAIROS KINÉ — Kinésithérapeute Saint-Genis-Laval & Lyon" />
+        <meta property="og:description" content="Thérapie manuelle, dry needling. Traitement court 5-8 séances. Prise en charge individuelle 30 min. Saint-Genis-Laval, proche Lyon." />
         <meta property="og:url" content="https://kairoskine.fr" />
         <meta property="og:locale" content="fr_FR" />
 
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="KAIROS KINÉ — Kinésithérapeute Brignais & Lyon" />
-        <meta name="twitter:description" content="Thérapie manuelle, dry needling. Traitement court 5-8 séances. Brignais, proche Lyon et Saint-Genis-Laval." />
+        <meta name="twitter:title" content="KAIROS KINÉ — Kinésithérapeute Saint-Genis-Laval & Lyon" />
+        <meta name="twitter:description" content="Thérapie manuelle, dry needling. Traitement court 5-8 séances. Saint-Genis-Laval, proche Lyon et Oullins." />
 
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",

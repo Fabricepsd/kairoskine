@@ -101,19 +101,19 @@ const BlogPage = () => {
         <title>Blog kinésithérapie Lyon & Saint-Genis-Laval — Thérapie manuelle, Dry Needling | KAIROS KINÉ</title>
         <meta
           name="description"
-          content="Articles et conseils de votre kinésithérapeute à Brignais : thérapie manuelle, dry needling, dépassement d'honoraires. Informations fiables et basées sur la science pour les patients de Lyon et Saint-Genis-Laval."
+          content="Articles et conseils de votre kinésithérapeute à Saint-Genis-Laval : thérapie manuelle, dry needling, dépassement d'honoraires. Informations fiables et basées sur la science pour les patients de Lyon et Oullins."
         />
         <meta
           name="keywords"
-          content="blog kiné Lyon, kinésithérapeute blog Saint-Genis-Laval, thérapie manuelle articles, dry needling explication, dépassement honoraires kiné, kiné Brignais blog"
+          content="blog kiné Lyon, kinésithérapeute blog Saint-Genis-Laval, thérapie manuelle articles, dry needling explication, dépassement honoraires kiné, kiné Lyon blog"
         />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Fabrice PONSODA — KAIROS KINÉ" />
         <link rel="canonical" href="https://kairoskine.fr/blog" />
 
         <meta property="og:type" content="blog" />
-        <meta property="og:title" content="Blog — KAIROS KINÉ Brignais" />
-        <meta property="og:description" content="Articles sur la kinésithérapie : thérapie manuelle, dry needling, tarifs et dépassements. Proche Lyon et Saint-Genis-Laval." />
+        <meta property="og:title" content="Blog — KAIROS KINÉ Saint-Genis-Laval" />
+        <meta property="og:description" content="Articles sur la kinésithérapie : thérapie manuelle, dry needling, tarifs et dépassements. Proche Lyon et Oullins." />
         <meta property="og:url" content="https://kairoskine.fr/blog" />
         <meta property="og:locale" content="fr_FR" />
 
@@ -122,7 +122,7 @@ const BlogPage = () => {
           "@context": "https://schema.org",
           "@type": "Blog",
           "name": "Blog KAIROS KINÉ",
-          "description": "Articles de kinésithérapie : thérapie manuelle, dry needling, tarifs. Cabinet à Brignais, proche Lyon.",
+          "description": "Articles de kinésithérapie : thérapie manuelle, dry needling, tarifs. Cabinet à Saint-Genis-Laval, proche Lyon.",
           "url": "https://kairoskine.fr/blog",
           "author": {
             "@type": "Person",

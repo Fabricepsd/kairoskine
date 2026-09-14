@@ -73,7 +73,7 @@ const BrignaisHero = () => {
           <div className="inline-flex items-center gap-3 py-2 px-5 rounded-full glass-gold">
             <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse-ring" />
             <span className="text-gold text-[10px] sm:text-xs font-semibold tracking-[0.3em] uppercase">
-              Kinésithérapeute spécialisé — Brignais
+              Kinésithérapeute spécialisé — Saint-Genis-Laval, Lyon
             </span>
           </div>
         </motion.div>
