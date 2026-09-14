@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Scale, FileText, Server, Shield, AlertCircle } from 'lucide-react';
 import { Helmet } from 'react-helmet';
+import { NAP, NAP_ADDRESS_INLINE } from '@/config/nap';
 
 const LegalNotices = () => {
   const sections = [
@@ -10,11 +11,15 @@ const LegalNotices = () => {
       title: "Informations Légales",
       content: (
         <div className="space-y-2">
-          <p><span className="text-gold font-medium">Nom commercial :</span> Fabrice PONSODA</p>
+          <p><span className="text-gold font-medium">Nom commercial :</span> {NAP.brandName}</p>
+          <p><span className="text-gold font-medium">Praticien :</span> {NAP.practitionerName}</p>
           <p><span className="text-gold font-medium">Statut :</span> Entrepreneur individuel (Auto-entrepreneur)</p>
           <p><span className="text-gold font-medium">Activité :</span> Kinésithérapeute libéral</p>
-          <p><span className="text-gold font-medium">Adresse :</span> LE QG CROSSFIT, ZA TAUPINIERE, Le Diamant, 97223</p>
-          <p><span className="text-gold font-medium">Email :</span> ponsoda.fabrice@gmail.com</p>
+          <p><span className="text-gold font-medium">Adresse :</span> {NAP_ADDRESS_INLINE}</p>
+          <p><span className="text-gold font-medium">Téléphone :</span> {NAP.phoneDisplay}</p>
+          <p><span className="text-gold font-medium">Email :</span> {NAP.email}</p>
+          <p><span className="text-gold font-medium">N° RPPS :</span> À compléter</p>
+          <p><span className="text-gold font-medium">SIRET :</span> À compléter</p>
         </div>
       )
     },
