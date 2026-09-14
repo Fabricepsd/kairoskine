@@ -58,6 +58,36 @@ const BrignaisHero = () => {
         }}
       />
 
+      {/* Logo animé — filigrane décoratif */}
+      <div className="absolute inset-0 z-[1] pointer-events-none flex items-center justify-end overflow-hidden">
+        {/* Glow derrière le logo */}
+        <motion.div
+          animate={{ opacity: [0.3, 0.7, 0.3], scale: [1, 1.08, 1] }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute right-[-5%] top-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gold/8 blur-[80px]"
+        />
+        {/* Logo rotation lente */}
+        <motion.img
+          src="/logo-kairos-transparent.png"
+          alt=""
+          aria-hidden="true"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+          className="absolute right-[-8%] md:right-[-2%] top-1/2 -translate-y-1/2 w-[420px] md:w-[560px] lg:w-[640px] select-none"
+          style={{ opacity: 0.06, filter: 'brightness(3) sepia(0.3) hue-rotate(25deg)' }}
+        />
+        {/* Deuxième couche — contre-rotation lente, légèrement décalée */}
+        <motion.img
+          src="/logo-kairos-transparent.png"
+          alt=""
+          aria-hidden="true"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+          className="absolute right-[-8%] md:right-[-2%] top-1/2 -translate-y-1/2 w-[420px] md:w-[560px] lg:w-[640px] select-none"
+          style={{ opacity: 0.03, filter: 'brightness(5) sepia(1) hue-rotate(25deg) saturate(2)' }}
+        />
+      </div>
+
       {/* Content */}
       <motion.div
         style={{ y: contentY, opacity }}

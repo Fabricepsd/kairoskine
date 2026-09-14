@@ -7,10 +7,34 @@ import { Star } from 'lucide-react';
  * All 5-star reviews from Google Business Profile
  */
 const GOOGLE_RATING = 5.0;
-const GOOGLE_REVIEW_COUNT = 24;
+const GOOGLE_REVIEW_COUNT = 28;
 const GOOGLE_PLACE_URL = 'https://g.page/r/CQpO3z32oFiiEAE/review';
 
 const reviews = [
+  {
+    name: 'Xavier Tribollet',
+    rating: 5,
+    date: 'Septembre 2026',
+    text: "J'ai découvert Fabrice tout d'abord pour la proximité, sans lire les avis. Il m'a soigné une première fois le dos puis l'épaule. Des résultats au-delà de mes espérances. Les douleurs ont diminué puis disparu. Je recommande ce Kiné. Jeune, sympa et surtout efficace.",
+  },
+  {
+    name: 'Lillya Mazgar',
+    rating: 5,
+    date: 'Septembre 2026',
+    text: "Excellent kinésithérapeute ! Rare de nos jours ! Personne souriante agréable qui prend soin de son patient et qui fait son métier avec passion ! N'hésitez pas vous ne serez pas déçu…",
+  },
+  {
+    name: 'Emérantine Ferard',
+    rating: 5,
+    date: 'Août 2026',
+    text: "Spécialisé en Dry Needling, Monsieur PONSODA est un kinésithérapeute extrêmement compétent, empathique, bienveillant et très professionnel. Je le recommande vivement.",
+  },
+  {
+    name: 'David Jack',
+    rating: 5,
+    date: 'Août 2026',
+    text: "Je recherchais un professionnel qui saurait m'aider pour mes douleurs au dos et bien j'ai frappé à la bonne porte ! Il a su bien m'analyser, dans ses questions et dans ma posture et mes gestes le pourquoi du comment j'ai eu mes douleurs au dos, avec en prime un excellent feeling. Craquage du dos, acupuncture et ventouse incroyable — depuis mon passage je dors beaucoup mieux grâce à ses conseils. J'écris rarement des longs avis mais quand on a un pro comme lui il faut le dire !",
+  },
   {
     name: 'Adam Marcel',
     rating: 5,
