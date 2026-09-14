@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { MapPin, Phone, Clock } from 'lucide-react';
+import { NAP } from '@/config/nap';
 
 const BrignaisBooking = () => {
   const ref = useRef(null);
@@ -106,8 +107,8 @@ const BrignaisBooking = () => {
                 <div>
                   <p className="text-gold/60 text-[9px] tracking-[0.3em] uppercase font-semibold mb-2">Adresse</p>
                   <p className="text-off-white/80 text-sm font-light leading-relaxed">
-                    163 rue du Général de Gaulle<br />
-                    69530 Brignais
+                    {NAP.streetAddress}<br />
+                    {NAP.postalCode} {NAP.city}
                   </p>
                 </div>
               </div>
@@ -123,8 +124,8 @@ const BrignaisBooking = () => {
                 </div>
                 <div>
                   <p className="text-gold/60 text-[9px] tracking-[0.3em] uppercase font-semibold mb-2">Téléphone</p>
-                  <a href="tel:+33695703906" onClick={() => window.gtag?.('event', 'cta_phone', { event_category: 'conversion', event_label: 'booking_section' })} className="text-off-white/80 text-sm font-light hover:text-gold transition-colors duration-300">
-                    06 95 70 39 06
+                  <a href={`tel:${NAP.phoneRaw}`} onClick={() => window.gtag?.('event', 'cta_phone', { event_category: 'conversion', event_label: 'booking_section' })} className="text-off-white/80 text-sm font-light hover:text-gold transition-colors duration-300">
+                    {NAP.phoneDisplay}
                   </a>
                 </div>
               </div>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router-dom';
+import { NAP, NAP_POSTAL_ADDRESS } from '@/config/nap';
 import BrignaisHero from '@/components/brignais/BrignaisHero';
 import BrignaisAbout from '@/components/brignais/BrignaisAbout';
 import BrignaisTreatments from '@/components/brignais/BrignaisTreatments';
@@ -54,26 +55,19 @@ const BrignaisPage = () => {
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": ["LocalBusiness", "HealthAndBeautyBusiness"],
-          "name": "KAIROS KINÉ — Brignais",
-          "description": "Cabinet de kinésithérapie spécialisé en thérapie manuelle structurelle et dry needling à Brignais, proche Lyon et Saint-Genis-Laval. Traitement court et intensif des douleurs musculo-squelettiques. Prise en charge individuelle 30 minutes.",
-          "url": "https://kairoskine.fr",
-          "telephone": "+33695703906",
+          "name": `${NAP.brandName} — ${NAP.city}`,
+          "description": `Cabinet de kinésithérapie spécialisé en thérapie manuelle structurelle et dry needling à ${NAP.city}, proche Lyon. Traitement court et intensif des douleurs musculo-squelettiques. Prise en charge individuelle 30 minutes.`,
+          "url": NAP.siteUrl,
+          "telephone": NAP.phoneRaw,
           "priceRange": "€€",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "163 rue du Général de Gaulle",
-            "addressLocality": "Brignais",
-            "postalCode": "69530",
-            "addressCountry": "FR",
-            "addressRegion": "Auvergne-Rhône-Alpes"
-          },
+          "address": NAP_POSTAL_ADDRESS,
           "openingHours": "Mo-Fr 08:00-19:00",
           "sameAs": [
-            "https://www.instagram.com/kairos.kine"
+            NAP.instagramUrl
           ],
           "employee": {
             "@type": "Person",
-            "name": "Fabrice PONSODA",
+            "name": NAP.practitionerName,
             "jobTitle": "Kinésithérapeute — Thérapie Manuelle Structurelle & Dry Needling",
             "description": "Kinésithérapeute diplômé, Master en Thérapie Manuelle Structurelle (UCL Louvain). Spécialisé en dry needling et thérapie manuelle.",
             "knowsAbout": [
@@ -82,7 +76,7 @@ const BrignaisPage = () => {
             ]
           },
           "serviceArea": [
-            { "@type": "Place", "name": "Brignais, Rhône" },
+            { "@type": "Place", "name": `${NAP.city}, Rhône` },
             { "@type": "Place", "name": "Lyon" },
             { "@type": "Place", "name": "Saint-Genis-Laval" },
             { "@type": "Place", "name": "Oullins" },

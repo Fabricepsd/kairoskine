@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { NAP } from '@/config/nap';
 
 const BrignaisAbout = () => {
   const ref = useRef(null);
@@ -47,10 +48,10 @@ const BrignaisAbout = () => {
                   className="absolute inset-0 bg-anthracite z-10"
                 />
                 <img
-                  src="/photofab-opt.png"
-                  alt="Fabrice PONSODA — Kinésithérapeute spécialisé Brignais"
-                  className="w-full h-auto relative z-[1]"
-                  style={{ display: 'block', maxHeight: '640px', objectFit: 'contain', objectPosition: 'bottom center', mixBlendMode: 'multiply' }}
+                  src="/photofab-new.jpg"
+                  alt="Fabrice PONSODA — Kinésithérapeute spécialisé Saint-Genis-Laval"
+                  className="w-full h-auto relative z-[1] rounded-full"
+                  style={{ display: 'block', maxHeight: '520px', objectFit: 'cover', objectPosition: 'center top' }}
                 />
               </motion.div>
               <motion.div
@@ -111,7 +112,7 @@ const BrignaisAbout = () => {
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor" />
               </svg>
               <span className="text-off-white/80 text-xs tracking-wider">
-                Cabinet de consultation — Brignais (69530)
+                Cabinet de consultation — {NAP.city} ({NAP.postalCode})
               </span>
             </motion.div>
           </motion.div>

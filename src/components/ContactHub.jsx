@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
+import { NAP, NAP_ADDRESS_INLINE } from '@/config/nap';
 
 const SYSTEM_PROMPT_MARTINIQUE = `Tu es l'assistant virtuel de KAIROS KINÉ, le cabinet de kinésithérapie de Fabrice PONSODA situé au QG CrossFit Le Diamant (Martinique).
 
@@ -38,15 +39,15 @@ RÈGLES ET CONDITIONS (TRÈS IMPORTANT) :
 - Utiliser "vous" avec les patients.
 - Garder les réponses concises (3-5 phrases max sauf si nécessaire).`;
 
-const SYSTEM_PROMPT_BRIGNAIS = `Tu es l'assistant virtuel de KAIROS KINÉ — cabinet de Brignais, de Fabrice PONSODA, kinésithérapeute spécialisé.
+const SYSTEM_PROMPT_BRIGNAIS = `Tu es l'assistant virtuel de KAIROS KINÉ — cabinet de ${NAP.city}, de Fabrice PONSODA, kinésithérapeute spécialisé.
 
 Ton rôle : répondre aux questions des patients de manière chaleureuse, claire et professionnelle. Tu parles uniquement en français.
 
 INFORMATIONS SUR LE CABINET :
-- Nom : KAIROS KINÉ — Brignais
+- Nom : KAIROS KINÉ — ${NAP.city}
 - Praticien : Fabrice PONSODA, kinésithérapeute diplômé, titulaire d'un Master en Thérapie Manuelle Structurelle (Université Catholique de Louvain, Belgique)
-- Adresse : 163 rue du Général de Gaulle, 69530 Brignais
-- Téléphone : 06 95 70 39 06
+- Adresse : ${NAP_ADDRESS_INLINE}
+- Téléphone : ${NAP.phoneDisplay}
 - Prise de rendez-vous : via Doctolib
 
 SPÉCIALITÉS :
@@ -72,6 +73,7 @@ CE QUE LE CABINET NE PREND PAS EN CHARGE :
 - Entorses (phase aiguë inflammatoire)
 - Rééducation périnéale / pelvi-périnéologie
 - Kinésithérapie vestibulaire (vertiges)
+- Rééducation du poignet / de la main post-fracture (réorientation systématique vers un confrère spécialisé)
 
 TARIFS :
 - Conventionné : ~17 € (remboursé Sécurité Sociale)
@@ -97,7 +99,31 @@ RÈGLES (TRÈS IMPORTANT) :
 - Toujours proposer la prise de RDV via Doctolib si pertinent.
 - Utiliser "vous" avec les patients.
 - Garder les réponses concises (3-5 phrases max sauf si nécessaire).
-- Si on te demande des infos sur le cabinet de Martinique, préciser que cette page concerne le cabinet de Brignais.`;
+- Si on te demande des infos sur le cabinet de Martinique, préciser que cette page concerne le cabinet de ${NAP.city}.`;
+
+const SYSTEM_PROMPT_ENTREPRISES = `Tu es l'assistant de KAIROS KINÉ pour les entreprises — Fabrice PONSODA, kinésithérapeute spécialisé en prévention des troubles musculo-squelettiques (TMS) en milieu professionnel.
+
+Ton rôle : répondre aux questions des DRH, responsables QVT ou dirigeants de PME sur l'offre entreprises. Tu parles uniquement en français, avec un ton professionnel et concis.
+
+OFFRE ENTREPRISES :
+- Format : intervention hebdomadaire en entreprise (1 session / semaine)
+- Prestations : dry needling pour les TMS professionnels + ateliers prévention gestes et postures + analyse ergonomique de poste
+- Cible : PME tertiaires, startups et scale-ups de la métropole lyonnaise (Lyon, Saint-Genis-Laval, Oullins, Villeurbanne, Vénissieux et environs)
+- Facturation : à l'entreprise (pas de prise en charge individuelle dans ce cadre)
+- Positionnement : prévention uniquement, pas de soins thérapeutiques en entreprise
+- Contact pour devis : ${NAP.email} — objet "Prévention TMS entreprise"
+
+POINTS CLÉS À METTRE EN AVANT :
+- Réduction de l'absentéisme lié aux TMS
+- Conformité démarche DUERP (Document Unique d'Évaluation des Risques)
+- Protocole court et concret : résultats mesurables
+- Pas de contrainte logistique lourde : Fabrice se déplace en entreprise
+
+RÈGLES :
+- Ne jamais inventer de tarifs ni de plages horaires précises (à confirmer lors d'un échange).
+- Pour toute demande de devis, orienter vers ${NAP.email} ou proposer l'utilisation du formulaire de contact.
+- Utiliser "vous" et un ton adapté aux interlocuteurs B2B.
+- Garder les réponses concises (3-5 phrases max).`;
 
 const WHATSAPP_NUMBER = '33695703906';
 const WHATSAPP_MESSAGE = encodeURIComponent('Bonjour Fabrice, je vous contacte depuis votre site KAIROS KINÉ. ');
@@ -132,15 +158,20 @@ const sendChatMessage = async (messages, systemPrompt) => {
 
 const ContactHub = () => {
     const location = useLocation();
-    const isBrignais = location.pathname === '/brignais';
-    const systemPrompt = isBrignais ? SYSTEM_PROMPT_BRIGNAIS : SYSTEM_PROMPT_MARTINIQUE;
+    const isEntreprises = location.pathname === '/entreprises';
+    const isBrignais = !isEntreprises && (location.pathname === '/brignais' || location.pathname === '/');
+    const systemPrompt = isEntreprises ? SYSTEM_PROMPT_ENTREPRISES
+        : isBrignais ? SYSTEM_PROMPT_BRIGNAIS
+            : SYSTEM_PROMPT_MARTINIQUE;
 
     // UI States
     const [menuOpen, setMenuOpen] = useState(false);
     const [chatOpen, setChatOpen] = useState(false);
 
-    const greeting = isBrignais
-        ? 'Bonjour ! Je suis l\'assistant KAIROS KINÉ — Brignais. Comment puis-je vous aider ? (tarifs, approche, rendez-vous…)'
+    const greeting = isEntreprises
+        ? 'Bonjour ! Je suis l\'assistant KAIROS KINÉ. Comment puis-je vous aider pour votre projet de prévention TMS en entreprise ?'
+        : isBrignais
+            ? `Bonjour ! Je suis l'assistant KAIROS KINÉ — ${NAP.city}. Comment puis-je vous aider ? (tarifs, approche, rendez-vous…)`
         : 'Bonjour ! Je suis l\'assistant KAIROS KINÉ. Comment puis-je vous aider ? (tarifs, soins, rendez-vous…)';
 
     // Chat States
