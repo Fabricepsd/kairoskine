@@ -39,7 +39,7 @@ const BrignaisAbout = () => {
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                className="relative overflow-hidden"
+                className="relative overflow-hidden rounded-full"
               >
                 <motion.div
                   initial={{ x: '0%' }}
@@ -51,7 +51,7 @@ const BrignaisAbout = () => {
                   src="/photofab-new.jpg"
                   alt="Fabrice PONSODA — Kinésithérapeute spécialisé Saint-Genis-Laval"
                   className="w-full h-auto relative z-[1] rounded-full"
-                  style={{ display: 'block', maxHeight: '520px', objectFit: 'cover', objectPosition: 'center top' }}
+                  style={{ display: 'block', maxHeight: '520px', objectFit: 'cover', objectPosition: 'center 10%', transform: 'scale(1.05)', transformOrigin: 'center center' }}
                 />
               </motion.div>
               <motion.div
