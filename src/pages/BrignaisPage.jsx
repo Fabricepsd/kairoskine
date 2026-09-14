@@ -32,7 +32,7 @@ const BrignaisPage = () => {
         <title>Kinésithérapeute Saint-Genis-Laval, Lyon — Thérapie manuelle & Dry Needling | KAIROS KINÉ</title>
         <meta
           name="description"
-          content="Kinésithérapeute spécialisé à Saint-Genis-Laval, proche Lyon et Oullins. Thérapie manuelle structurelle, dry needling. Traitement court 5-8 séances. Conventionné + dépassement HN. RDV en ligne."
+          content="Kinésithérapeute spécialisé à Saint-Genis-Laval, proche Lyon et Oullins. Thérapie manuelle structurelle, dry needling. Traitement court 3-5 séances. Conventionné + dépassement HN. RDV en ligne."
         />
         <meta
           name="keywords"
@@ -44,13 +44,13 @@ const BrignaisPage = () => {
 
         <meta property="og:type" content="website" />
         <meta property="og:title" content="KAIROS KINÉ — Kinésithérapeute Saint-Genis-Laval & Lyon" />
-        <meta property="og:description" content="Thérapie manuelle, dry needling. Traitement court 5-8 séances. Prise en charge individuelle 30 min. Saint-Genis-Laval, proche Lyon." />
+        <meta property="og:description" content="Thérapie manuelle, dry needling. Traitement court 3-5 séances. Prise en charge individuelle 30 min. Saint-Genis-Laval, proche Lyon." />
         <meta property="og:url" content="https://kairoskine.fr" />
         <meta property="og:locale" content="fr_FR" />
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="KAIROS KINÉ — Kinésithérapeute Saint-Genis-Laval & Lyon" />
-        <meta name="twitter:description" content="Thérapie manuelle, dry needling. Traitement court 5-8 séances. Saint-Genis-Laval, proche Lyon et Oullins." />
+        <meta name="twitter:description" content="Thérapie manuelle, dry needling. Traitement court 3-5 séances. Saint-Genis-Laval, proche Lyon et Oullins." />
 
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",

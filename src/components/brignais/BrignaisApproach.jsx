@@ -12,7 +12,7 @@ const steps = [
       'Anamnèse + examen clinique ciblé',
       'Diagnostic kinésithérapique',
       '1er traitement si possible',
-      'Plan annoncé : 5-8 séances',
+      'Plan annoncé : 3-5 séances',
       'Information tarifaire confirmée',
     ]
   },
