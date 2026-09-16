@@ -58,33 +58,44 @@ const BrignaisHero = () => {
         }}
       />
 
-      {/* Logo animé — filigrane décoratif */}
+      {/* Logo animé — Effet "Flamme qui prend vie" */}
       <div className="absolute inset-0 z-[1] pointer-events-none flex items-center justify-end overflow-hidden">
-        {/* Glow derrière le logo */}
+        {/* Glow de chaleur derrière le logo */}
         <motion.div
-          animate={{ opacity: [0.3, 0.7, 0.3], scale: [1, 1.08, 1] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute right-[-5%] top-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gold/8 blur-[80px]"
+          animate={{ opacity: [0.2, 0.5, 0.2], scale: [0.95, 1.05, 0.95] }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute right-[-5%] md:right-[0%] top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gold/10 blur-[100px]"
         />
-        {/* Logo rotation lente */}
+        
+        {/* Couche 1: La base de la flamme (respiration lente) */}
         <motion.img
           src="/logo-kairos-transparent.png"
           alt=""
           aria-hidden="true"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
-          className="absolute right-[-8%] md:right-[-2%] top-1/2 -translate-y-1/2 w-[420px] md:w-[560px] lg:w-[640px] select-none"
-          style={{ opacity: 0.06, filter: 'brightness(3) sepia(0.3) hue-rotate(25deg)' }}
+          animate={{ 
+            scale: [1, 1.03, 1],
+            opacity: [0.06, 0.14, 0.06],
+            rotate: [-1, 1, -1] 
+          }}
+          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute right-[-8%] md:right-[-2%] top-1/2 -translate-y-1/2 w-[420px] md:w-[560px] lg:w-[640px] select-none origin-bottom"
+          style={{ filter: 'drop-shadow(0 0 30px rgba(212,175,55,0.4)) brightness(1.5) sepia(0.8) hue-rotate(15deg)' }}
         />
-        {/* Deuxième couche — contre-rotation lente, légèrement décalée */}
+
+        {/* Couche 2: Le scintillement (rapide, dynamique) */}
         <motion.img
           src="/logo-kairos-transparent.png"
           alt=""
           aria-hidden="true"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-          className="absolute right-[-8%] md:right-[-2%] top-1/2 -translate-y-1/2 w-[420px] md:w-[560px] lg:w-[640px] select-none"
-          style={{ opacity: 0.03, filter: 'brightness(5) sepia(1) hue-rotate(25deg) saturate(2)' }}
+          animate={{ 
+            scale: [1.02, 1.06, 1.01, 1.04, 1.02],
+            opacity: [0.0, 0.12, 0.02, 0.15, 0.0],
+            rotate: [0, -2, 1, -1, 0],
+            y: ['-50%', '-52%', '-49%', '-51%', '-50%']
+          }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute right-[-8%] md:right-[-2%] top-1/2 w-[420px] md:w-[560px] lg:w-[640px] select-none origin-bottom mix-blend-screen"
+          style={{ filter: 'blur(3px) drop-shadow(0 0 40px rgba(255,200,100,0.6)) brightness(2) sepia(1) saturate(2)' }}
         />
       </div>
 

@@ -287,7 +287,7 @@ const EntreprisesPage = () => {
                   { label: 'Lieu', value: 'Dans vos locaux' },
                   { label: 'Contenu', value: 'Dry needling TMS + atelier gestes/postures ou analyse de poste (selon semaine)' },
                   { label: 'Facturation', value: 'À l\'entreprise' },
-                  { label: 'Positionnement', value: 'Prévention uniquement' },
+                  { label: 'Positionnement', value: 'Prévention / Traitement' },
                 ].map((row, i) => (
                   <div key={i} className="flex items-start gap-4 pb-5 border-b border-white/5 last:border-0 last:pb-0">
                     <span className="text-gold/60 text-[9px] tracking-[0.25em] uppercase font-semibold shrink-0 mt-1 w-24">{row.label}</span>
