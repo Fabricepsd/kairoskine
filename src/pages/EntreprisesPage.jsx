@@ -441,10 +441,6 @@ const EntreprisesPage = () => {
                 Ou appeler le {NAP.phoneDisplay}
               </a>
             </div>
-
-            <p className="mt-6 text-off-white/20 text-[10px] tracking-wider uppercase">
-              Offre B2B — facturation à l'entreprise · Pas de soins individuels dans ce cadre
-            </p>
           </motion.div>
         </div>
       </section>
