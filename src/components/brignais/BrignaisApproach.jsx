@@ -7,7 +7,7 @@ const steps = [
     icon: Clock,
     number: '01',
     title: 'Bilan initial',
-    subtitle: '1re séance — 30 min',
+    subtitle: '1re séance — 45 min',
     items: [
       'Anamnèse + examen clinique ciblé',
       'Diagnostic kinésithérapique',
