@@ -426,7 +426,7 @@ const EntreprisesPage = () => {
                 style={{ clipPath: 'polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))' }}
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Écrire à Fabrice
+                  Me contacter
                   <ArrowRight className="size-4" />
                 </span>
                 <motion.span className="absolute inset-0 bg-white" initial={{ x: '-100%' }} whileHover={{ x: 0 }} transition={{ duration: 0.3 }} />
