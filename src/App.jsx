@@ -11,7 +11,6 @@ import LegalNotices from '@/components/LegalNotices';
 import PrivacyPolicy from '@/components/PrivacyPolicy';
 import NotFoundPage from '@/pages/NotFoundPage';
 import { Toaster } from '@/components/ui/toaster';
-import ContactHub from '@/components/ContactHub';
 import CookieConsent from '@/components/CookieConsent';
 
 const ScrollToTop = () => {
@@ -45,7 +44,6 @@ function App() {
         </main>
 
         <Footer />
-        <ContactHub />
 
         <Toaster />
         <CookieConsent />
