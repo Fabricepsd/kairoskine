@@ -31,10 +31,9 @@ const BrignaisHero = () => {
   return (
     <section ref={ref} id="brignais-hero" className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-deep-black" />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gold/8 blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-gold/4 blur-[100px] pointer-events-none" />
+      <div className="absolute inset-0 z-0 bg-deep-black">
+        <div className="absolute top-[-100px] right-[-100px] w-[800px] h-[800px] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(0,0,0,0) 60%)' }} />
+        <div className="absolute bottom-[-100px] left-[-100px] w-[600px] h-[600px] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.04) 0%, rgba(0,0,0,0) 60%)' }} />
       </div>
 
       {/* Overlays */}
@@ -47,7 +46,8 @@ const BrignaisHero = () => {
       <motion.div
         animate={{ opacity: [0.3, 0.6, 0.3] }}
         transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-1/4 right-[10%] w-64 h-64 rounded-full bg-gold/5 blur-3xl z-[1] pointer-events-none"
+        className="absolute top-1/4 right-[10%] w-[400px] h-[400px] z-[1] pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.06) 0%, rgba(0,0,0,0) 50%)' }}
       />
 
       {/* Grid lines */}
@@ -58,46 +58,7 @@ const BrignaisHero = () => {
         }}
       />
 
-      {/* Logo animé — Effet "Flamme qui prend vie" */}
-      <div className="absolute inset-0 z-[1] pointer-events-none flex items-center justify-end overflow-hidden">
-        {/* Glow de chaleur derrière le logo */}
-        <motion.div
-          animate={{ opacity: [0.2, 0.5, 0.2], scale: [0.95, 1.05, 0.95] }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute right-[-5%] md:right-[0%] top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gold/10 blur-[100px]"
-        />
-        
-        {/* Couche 1: La base de la flamme (respiration lente) */}
-        <motion.img
-          src="/logo-kairos-transparent.png"
-          alt=""
-          aria-hidden="true"
-          animate={{ 
-            scale: [1, 1.03, 1],
-            opacity: [0.06, 0.14, 0.06],
-            rotate: [-1, 1, -1] 
-          }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute right-[-8%] md:right-[-2%] top-1/2 -translate-y-1/2 w-[420px] md:w-[560px] lg:w-[640px] select-none origin-bottom"
-          style={{ filter: 'drop-shadow(0 0 30px rgba(212,175,55,0.4)) brightness(1.5) sepia(0.8) hue-rotate(15deg)' }}
-        />
 
-        {/* Couche 2: Le scintillement (rapide, dynamique) */}
-        <motion.img
-          src="/logo-kairos-transparent.png"
-          alt=""
-          aria-hidden="true"
-          animate={{ 
-            scale: [1.02, 1.06, 1.01, 1.04, 1.02],
-            opacity: [0.0, 0.12, 0.02, 0.15, 0.0],
-            rotate: [0, -2, 1, -1, 0],
-            y: ['-50%', '-52%', '-49%', '-51%', '-50%']
-          }}
-          transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute right-[-8%] md:right-[-2%] top-1/2 w-[420px] md:w-[560px] lg:w-[640px] select-none origin-bottom mix-blend-screen"
-          style={{ filter: 'blur(3px) drop-shadow(0 0 40px rgba(255,200,100,0.6)) brightness(2) sepia(1) saturate(2)' }}
-        />
-      </div>
 
       {/* Content */}
       <motion.div

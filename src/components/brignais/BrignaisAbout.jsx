@@ -29,7 +29,7 @@ const BrignaisAbout = () => {
             className="relative w-full flex justify-center lg:justify-start"
           >
             <div className="relative w-full max-w-[420px]">
-              <div className="absolute inset-0 rounded-full blur-[60px] bg-gold/10 scale-150 pointer-events-none" />
+              <div className="absolute inset-0 rounded-full scale-150 pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(0,0,0,0) 70%)' }} />
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
@@ -50,6 +50,8 @@ const BrignaisAbout = () => {
                 <img
                   src="/photofab-new.jpg"
                   alt="Fabrice PONSODA — Kinésithérapeute spécialisé Saint-Genis-Laval"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-auto relative z-[1] rounded-full"
                   style={{ display: 'block', maxHeight: '520px', objectFit: 'cover', objectPosition: 'center 10%', transform: 'scale(1.05)', transformOrigin: 'center center' }}
                 />
