@@ -22,10 +22,10 @@ module.exports = {
         'anthracite-light': '#1E1E1E',
         'off-white': '#F2F0EB',
         'cream': '#EDE8DC',
-        'gold': '#D4AF37',
-        'gold-light': '#E8C84B',
-        'gold-dark': '#A8890F',
-        'gold-muted': '#C9A961',
+        'gold': '#96A575',
+        'gold-light': '#B3C094',
+        'gold-dark': '#6B7850',
+        'gold-muted': '#8B9968',
         'light-gray': '#E0E0E0',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -88,9 +88,9 @@ module.exports = {
           '50%': { transform: 'translateY(-14px)' },
         },
         'pulse-ring': {
-          '0%': { boxShadow: '0 0 0 0 rgba(212, 175, 55, 0.4)' },
-          '70%': { boxShadow: '0 0 0 14px rgba(212, 175, 55, 0)' },
-          '100%': { boxShadow: '0 0 0 0 rgba(212, 175, 55, 0)' },
+          '0%': { boxShadow: '0 0 0 0 rgba(150, 165, 117, 0.4)' },
+          '70%': { boxShadow: '0 0 0 14px rgba(150, 165, 117, 0)' },
+          '100%': { boxShadow: '0 0 0 0 rgba(150, 165, 117, 0)' },
         },
         'line-expand': {
           '0%': { width: '0%' },
@@ -107,7 +107,7 @@ module.exports = {
         'line-expand': 'line-expand 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards',
       },
       backgroundImage: {
-        'gold-gradient': 'linear-gradient(135deg, #b89a2e 0%, #D4AF37 50%, #f0d060 100%)',
+        'gold-gradient': 'linear-gradient(135deg, #7C8A5E 0%, #96A575 50%, #C3CDA0 100%)',
         'dark-gradient': 'linear-gradient(180deg, #080808 0%, #141414 100%)',
       },
       transitionTimingFunction: {

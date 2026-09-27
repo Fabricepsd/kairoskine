@@ -6,3 +6,4 @@ dist
 .vite
 kairos_kine_deploy.zip
 *.zip
+.claude

@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { motion, useInView, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import { ChevronDown } from 'lucide-react';
 
 const faqData = [
   {
     question: "Quelle est la différence entre un kiné classique et votre approche ?",
-    answer: "En cabinet classique, le kiné traite souvent 3-4 patients simultanément sur des séances de 20 minutes. Chez KAIROS KINÉ, chaque séance dure 30 minutes en individuel — un seul patient à la fois. J'utilise des techniques spécialisées (thérapie manuelle structurelle, dry needling) pour des résultats plus rapides, en 5 à 8 séances maximum.",
+    answer: "En cabinet classique, le kiné traite souvent 3-4 patients simultanément sur des séances de 20 minutes. Chez KAIROS KINÉ, chaque séance dure 30 minutes en individuel — un seul patient à la fois. J'utilise des techniques spécialisées (thérapie manuelle structurelle, dry needling) pour des résultats plus rapides, en 3 à 5 séances maximum.",
   },
   {
     question: "Qu'est-ce que le dry needling ?",
@@ -18,7 +18,7 @@ const faqData = [
   },
   {
     question: "Combien de séances sont nécessaires ?",
-    answer: "En moyenne, 5 à 8 séances suffisent. À la 5ème séance, si l'amélioration est inférieure à 30%, je vous réoriente vers un spécialiste ou une imagerie. L'objectif est un traitement court et efficace, pas un suivi à rallonge.",
+    answer: "En moyenne, 3 à 5 séances suffisent. À la 5ème séance, si l'amélioration est inférieure à 30%, je vous réoriente vers un spécialiste ou une imagerie. L'objectif est un traitement court et efficace, pas un suivi à rallonge.",
   },
   {
     question: "Faut-il une ordonnance pour consulter ?",
@@ -35,13 +35,16 @@ const faqData = [
 ];
 
 const FaqItem = ({ item, index, isOpen, onToggle }) => {
+  const panelId = `faq-panel-${index}`;
   return (
     <div
       className="border-b border-white/5 last:border-b-0"
     >
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between py-5 px-1 text-left group"
+        aria-expanded={isOpen}
+        aria-controls={panelId}
+        className="w-full flex items-center justify-between py-5 px-1 text-left group rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-anthracite"
       >
         <span className={`text-sm sm:text-base font-medium transition-colors duration-300 pr-4 ${isOpen ? 'text-gold' : 'text-off-white/80 group-hover:text-off-white'}`}>
           {item.question}
@@ -58,6 +61,8 @@ const FaqItem = ({ item, index, isOpen, onToggle }) => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id={panelId}
+            role="region"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -78,6 +83,7 @@ const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
+  const prefersReducedMotion = useReducedMotion();
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -104,9 +110,9 @@ const FAQ = () => {
         <div className="container mx-auto px-6 md:px-8 relative z-10">
           <motion.div
             ref={ref}
-            initial={{ opacity: 0, y: 30 }}
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: prefersReducedMotion ? 0.4 : 0.8 }}
             className="text-center mb-14"
           >
             <div className="flex items-center justify-center gap-4 mb-5">
@@ -124,9 +130,9 @@ const FAQ = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: prefersReducedMotion ? 0.4 : 0.8, delay: prefersReducedMotion ? 0 : 0.2 }}
             className="max-w-3xl mx-auto bg-anthracite border border-white/5 p-6 md:p-8"
             style={{ clipPath: 'polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))' }}
           >

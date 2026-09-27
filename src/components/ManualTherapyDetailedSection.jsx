@@ -1,11 +1,12 @@
 import React, { useRef } from 'react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { Check } from 'lucide-react';
 
 const TiltImageTM = ({ isInView }) => {
   const ref = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
-  const imgY = useTransform(scrollYProgress, [0, 1], ['-6%', '6%']);
+  const imgY = useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? ['0%', '0%'] : ['-6%', '6%']);
 
   return (
     <div ref={ref} className="relative w-full max-w-[480px]">
@@ -15,12 +16,21 @@ const TiltImageTM = ({ isInView }) => {
       {/* Image */}
       <div className="relative overflow-hidden">
         {/* Wipe reveal */}
-        <motion.div
-          initial={{ x: '100%' }}
-          animate={isInView ? { x: '-100%' } : {}}
-          transition={{ duration: 1.3, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0 bg-anthracite z-10"
-        />
+        {prefersReducedMotion ? (
+          <motion.div
+            initial={{ opacity: 1 }}
+            animate={isInView ? { opacity: 0 } : {}}
+            transition={{ duration: 0.4 }}
+            className="absolute inset-0 bg-anthracite z-10"
+          />
+        ) : (
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={isInView ? { x: '-100%' } : {}}
+            transition={{ duration: 1.3, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute inset-0 bg-anthracite z-10"
+          />
+        )}
 
         <motion.div style={{ y: imgY }} className="will-change-transform">
           <img
@@ -36,7 +46,7 @@ const TiltImageTM = ({ isInView }) => {
       <motion.div
         initial={{ scaleX: 0 }}
         animate={isInView ? { scaleX: 1 } : {}}
-        transition={{ duration: 1.2, delay: 1, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: prefersReducedMotion ? 0.4 : 1.2, delay: prefersReducedMotion ? 0.2 : 1, ease: [0.16, 1, 0.3, 1] }}
         className="absolute bottom-0 left-0 w-16 h-[1px] bg-gold/40 origin-left"
       />
     </div>
@@ -55,8 +65,7 @@ const techniques = [
 const ManualTherapyDetailedSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
-  const imgY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section
@@ -69,8 +78,8 @@ const ManualTherapyDetailedSection = () => {
 
       {/* Large background text */}
       <div className="absolute inset-0 flex items-center justify-end pointer-events-none overflow-hidden pr-4">
-        <span className="font-display text-[160px] md:text-[220px] font-bold uppercase leading-none select-none"
-          style={{ WebkitTextStroke: '1px rgba(212,175,55,0.04)', color: 'transparent' }}>
+        <span className="font-display text-[70px] sm:text-[110px] md:text-[160px] lg:text-[220px] font-bold uppercase leading-none select-none"
+          style={{ WebkitTextStroke: '1px rgba(150, 165, 117,0.04)', color: 'transparent' }}>
           MANUELLE
         </span>
       </div>
@@ -80,9 +89,9 @@ const ManualTherapyDetailedSection = () => {
 
           {/* Image — order 2 on desktop */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.92 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: prefersReducedMotion ? 0.4 : 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="order-2 lg:order-1 relative w-full flex justify-center"
           >
             <TiltImageTM isInView={isInView} />
@@ -90,9 +99,9 @@ const ManualTherapyDetailedSection = () => {
 
           {/* Content — order 1 on desktop */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            transition={{ duration: prefersReducedMotion ? 0.4 : 1, ease: [0.16, 1, 0.3, 1], delay: prefersReducedMotion ? 0 : 0.1 }}
             className="order-1 lg:order-2"
           >
             <div className="flex items-center gap-4 mb-6">
@@ -118,9 +127,9 @@ const ManualTherapyDetailedSection = () => {
                 {techniques.map((item, i) => (
                   <motion.li
                     key={i}
-                    initial={{ opacity: 0, x: 20 }}
+                    initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: 20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.4 + i * 0.08 }}
+                    transition={{ duration: prefersReducedMotion ? 0.3 : 0.5, delay: prefersReducedMotion ? i * 0.04 : 0.4 + i * 0.08 }}
                     className="flex items-start gap-4 group"
                   >
                     <span className="mt-0.5 size-5 bg-gold/10 border border-gold/20 rounded flex items-center justify-center shrink-0 group-hover:bg-gold/20 transition-colors duration-300">

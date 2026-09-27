@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { Clock, User, Target, RotateCcw } from 'lucide-react';
 
 const steps = [
@@ -20,7 +20,7 @@ const steps = [
     icon: User,
     number: '02',
     title: 'Suivi intensif',
-    subtitle: 'Séances 2 à 5 — 30 min',
+    subtitle: 'Séances 2 à 4 — 30 min',
     items: [
       'Réévaluation rapide',
       'Thérapie manuelle structurelle',
@@ -32,10 +32,10 @@ const steps = [
     icon: Target,
     number: '03',
     title: 'Réévaluation',
-    subtitle: 'Séance 5 ou 6',
+    subtitle: 'Séance 4 ou 5',
     items: [
       '> 70% amélioration → fin de prise en charge',
-      '30-70% → 2-3 séances supplémentaires',
+      '30-70% → 1 séance supplémentaire',
       '< 30% → réorientation (imagerie, spécialiste)',
     ]
   },
@@ -44,6 +44,7 @@ const steps = [
 const BrignaisApproach = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section ref={ref} id="brignais-approach" className="py-24 md:py-40 bg-anthracite relative w-full overflow-hidden">
@@ -51,28 +52,28 @@ const BrignaisApproach = () => {
 
       {/* Watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-        <span className="font-display text-[180px] md:text-[250px] font-bold text-white/[0.015] select-none whitespace-nowrap">
+        <span className="font-display text-[70px] sm:text-[110px] md:text-[180px] lg:text-[250px] font-bold text-white/[0.015] select-none whitespace-nowrap">
           MÉTHODE
         </span>
       </div>
 
       <div className="container mx-auto px-6 md:px-8 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: prefersReducedMotion ? 0.4 : 0.8 }}
           className="text-center mb-16 md:mb-24"
         >
           <motion.span
-            initial={{ opacity: 0, letterSpacing: '0.5em' }}
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, letterSpacing: '0.5em' }}
             animate={isInView ? { opacity: 1, letterSpacing: '0.3em' } : {}}
-            transition={{ duration: 1, delay: 0.2 }}
+            transition={{ duration: prefersReducedMotion ? 0.3 : 1, delay: prefersReducedMotion ? 0 : 0.2 }}
             className="text-gold text-[10px] font-semibold tracking-[0.3em] uppercase block mb-4"
           >
             Mon approche
           </motion.span>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-off-white mb-6">
-            5 à 8 séances. <span className="gold-gradient-text">Pas plus.</span>
+            3 à 5 séances. <span className="gold-gradient-text">Pas plus.</span>
           </h2>
           <div className="space-y-4 text-base sm:text-lg text-off-white/60 font-light leading-relaxed max-w-2xl mx-auto">
             <p>
@@ -92,9 +93,9 @@ const BrignaisApproach = () => {
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+                initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 40, filter: 'blur(6px)' }}
                 animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
-                transition={{ duration: 0.8, delay: 0.2 + index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: prefersReducedMotion ? 0.4 : 0.8, delay: prefersReducedMotion ? index * 0.06 : 0.2 + index * 0.15, ease: [0.16, 1, 0.3, 1] }}
                 className="group"
               >
                 <div
@@ -102,7 +103,7 @@ const BrignaisApproach = () => {
                   style={{ clipPath: 'polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))' }}
                 >
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
-                    style={{ background: 'radial-gradient(circle at 50% 50%, rgba(212,175,55,0.06) 0%, transparent 70%)' }}
+                    style={{ background: 'radial-gradient(circle at 50% 50%, rgba(150, 165, 117,0.06) 0%, transparent 70%)' }}
                   />
 
                   {/* Number */}

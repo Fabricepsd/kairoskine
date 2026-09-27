@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { Star } from 'lucide-react';
 
 /**
@@ -105,13 +105,14 @@ const StarRating = ({ rating }) => (
 const ReviewCard = ({ review, index }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-60px' });
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
+      initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: prefersReducedMotion ? 0.4 : 0.7, delay: prefersReducedMotion ? Math.min(index * 0.04, 0.3) : index * 0.12, ease: [0.16, 1, 0.3, 1] }}
       className="p-6 bg-deep-black border border-white/5 hover:border-gold/15 transition-all duration-500 flex flex-col"
       style={{ clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))' }}
     >
@@ -151,6 +152,7 @@ const ReviewCard = ({ review, index }) => {
 const GoogleReviews = () => {
   const headerRef = useRef(null);
   const headerInView = useInView(headerRef, { once: true, margin: '-80px' });
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section id="avis" className="py-20 md:py-32 bg-anthracite relative overflow-hidden">
@@ -161,9 +163,9 @@ const GoogleReviews = () => {
         {/* Header */}
         <motion.div
           ref={headerRef}
-          initial={{ opacity: 0, y: 30 }}
+          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: prefersReducedMotion ? 0.4 : 0.8 }}
           className="text-center mb-14"
         >
           <div className="flex items-center justify-center gap-4 mb-5">
@@ -199,9 +201,9 @@ const GoogleReviews = () => {
 
         {/* CTA to leave a review */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: prefersReducedMotion ? 0.4 : 0.8, delay: prefersReducedMotion ? 0.1 : 0.6 }}
           className="text-center mt-12"
         >
           <a
@@ -209,7 +211,7 @@ const GoogleReviews = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => window.gtag?.('event', 'cta_google_review', { event_category: 'engagement', event_label: 'reviews_section' })}
-            className="inline-flex items-center gap-2 text-off-white/40 hover:text-gold text-xs uppercase tracking-[0.15em] font-medium transition-colors duration-300"
+            className="inline-flex items-center gap-2 text-off-white/40 hover:text-gold text-xs uppercase tracking-[0.15em] font-medium transition-colors duration-300 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-anthracite"
           >
             Laisser un avis sur Google
             <svg className="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 
@@ -10,6 +10,7 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isBlogPage = location.pathname.startsWith('/blog');
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,9 +42,9 @@ const Header = () => {
 
   return (
     <motion.header
-      initial={{ y: -100, opacity: 0 }}
+      initial={prefersReducedMotion ? { opacity: 0 } : { y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: prefersReducedMotion ? 0.3 : 0.8, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 ${isScrolled
         ? 'glass-panel shadow-2xl border-b border-white/5'
         : 'bg-transparent'
@@ -63,14 +64,14 @@ const Header = () => {
           {/* Logo */}
           <Link
             to="/"
-            className="group flex items-center gap-3 relative"
+            className="group flex items-center gap-3 relative rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-deep-black"
           >
             {/* Logo mark */}
             <div className="relative shrink-0">
               <img
                 src="/logo-kairos-transparent.png"
                 alt="KAIROS KINÉ logo"
-                className="h-9 w-9 md:h-10 md:w-10 object-contain transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]"
+                className="h-9 w-9 md:h-10 md:w-10 object-contain transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(150, 165, 117,0.5)]"
               />
             </div>
             {/* Brand name */}
@@ -93,7 +94,7 @@ const Header = () => {
                 onClick={() => scrollToSection(link.id)}
                 onMouseEnter={() => setActiveLink(link.id)}
                 onMouseLeave={() => setActiveLink(null)}
-                className="relative text-off-white/70 hover:text-off-white text-xs lg:text-sm font-medium tracking-[0.08em] uppercase transition-colors duration-300 py-1"
+                className="relative text-off-white/70 hover:text-off-white text-xs lg:text-sm font-medium tracking-[0.08em] uppercase transition-colors duration-300 py-2 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-deep-black"
               >
                 {link.name}
                 <span className={`absolute -bottom-0.5 left-0 h-[1px] bg-gold transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${activeLink === link.id ? 'w-full' : 'w-0'
@@ -106,7 +107,7 @@ const Header = () => {
               to="/blog"
               onMouseEnter={() => setActiveLink('blog')}
               onMouseLeave={() => setActiveLink(null)}
-              className={`relative text-xs lg:text-sm font-medium tracking-[0.08em] uppercase transition-colors duration-300 py-1 ${isBlogPage ? 'text-gold' : 'text-off-white/70 hover:text-off-white'}`}
+              className={`relative text-xs lg:text-sm font-medium tracking-[0.08em] uppercase transition-colors duration-300 py-2 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-deep-black ${isBlogPage ? 'text-gold' : 'text-off-white/70 hover:text-off-white'}`}
             >
               Blog
               <span className={`absolute -bottom-0.5 left-0 h-[1px] bg-gold transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${activeLink === 'blog' || isBlogPage ? 'w-full' : 'w-0'
@@ -118,7 +119,7 @@ const Header = () => {
               to="/entreprises"
               onMouseEnter={() => setActiveLink('entreprises')}
               onMouseLeave={() => setActiveLink(null)}
-              className={`relative text-xs lg:text-sm font-medium tracking-[0.08em] uppercase transition-colors duration-300 py-1 ${location.pathname === '/entreprises' ? 'text-gold' : 'text-gold/60 hover:text-gold'}`}
+              className={`relative text-xs lg:text-sm font-medium tracking-[0.08em] uppercase transition-colors duration-300 py-2 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-deep-black ${location.pathname === '/entreprises' ? 'text-gold' : 'text-gold/60 hover:text-gold'}`}
             >
               Entreprises
               <span className={`absolute -bottom-0.5 left-0 h-[1px] bg-gold transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${activeLink === 'entreprises' || location.pathname === '/entreprises' ? 'w-full' : 'w-0'
@@ -126,10 +127,10 @@ const Header = () => {
             </Link>
 
             <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={prefersReducedMotion ? undefined : { scale: 1.03 }}
+              whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
               onClick={() => scrollToSection('brignais-booking')}
-              className="relative overflow-hidden bg-gold text-deep-black px-5 lg:px-7 py-2.5 text-xs lg:text-sm font-bold uppercase tracking-[0.1em] transition-all duration-300 group"
+              className="relative overflow-hidden bg-gold text-deep-black px-5 lg:px-7 py-2.5 text-xs lg:text-sm font-bold uppercase tracking-[0.1em] transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-off-white focus-visible:ring-offset-2 focus-visible:ring-offset-deep-black"
               style={{ clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))' }}
             >
               <span className="relative z-10">Prendre Rendez-vous</span>
@@ -145,8 +146,9 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 -mr-2 text-off-white hover:text-gold transition-colors"
+            className="md:hidden p-3 -mr-3 text-off-white hover:text-gold transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-deep-black"
             aria-label="Menu"
+            aria-expanded={isMobileMenuOpen}
           >
             <AnimatePresence mode="wait">
               {isMobileMenuOpen ? (
@@ -167,21 +169,21 @@ const Header = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -20 }}
+            transition={{ duration: prefersReducedMotion ? 0.2 : 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="md:hidden glass-panel border-t border-white/5 overflow-hidden w-full absolute left-0 right-0 shadow-2xl"
           >
             <div className="container mx-auto px-6 py-8 flex flex-col gap-6">
               {navLinks.map((link, i) => (
                 <motion.button
                   key={link.name}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.07 }}
+                  transition={{ delay: prefersReducedMotion ? 0 : i * 0.07 }}
                   onClick={() => scrollToSection(link.id)}
-                  className="text-off-white/80 hover:text-gold font-display text-2xl font-light italic text-left transition-colors"
+                  className="text-off-white/80 hover:text-gold font-display text-2xl font-light italic text-left py-2 -my-2 transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-deep-black"
                 >
                   {link.name}
                 </motion.button>
@@ -189,14 +191,14 @@ const Header = () => {
 
               {/* Blog mobile link */}
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
+                initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navLinks.length * 0.07 }}
+                transition={{ delay: prefersReducedMotion ? 0 : navLinks.length * 0.07 }}
               >
                 <Link
                   to="/blog"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`font-display text-2xl font-light italic transition-colors ${isBlogPage ? 'text-gold' : 'text-off-white/80 hover:text-gold'}`}
+                  className={`inline-block py-2 -my-2 font-display text-2xl font-light italic transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-deep-black ${isBlogPage ? 'text-gold' : 'text-off-white/80 hover:text-gold'}`}
                 >
                   Blog
                 </Link>
@@ -204,25 +206,25 @@ const Header = () => {
 
               {/* Entreprises mobile link */}
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
+                initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: (navLinks.length + 1) * 0.07 }}
+                transition={{ delay: prefersReducedMotion ? 0 : (navLinks.length + 1) * 0.07 }}
               >
                 <Link
                   to="/entreprises"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`font-display text-2xl font-light italic transition-colors ${location.pathname === '/entreprises' ? 'text-gold' : 'text-gold/60 hover:text-gold'}`}
+                  className={`inline-block py-2 -my-2 font-display text-2xl font-light italic transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-deep-black ${location.pathname === '/entreprises' ? 'text-gold' : 'text-gold/60 hover:text-gold'}`}
                 >
                   Entreprises
                 </Link>
               </motion.div>
 
               <motion.button
-                initial={{ opacity: 0, y: 10 }}
+                initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
+                transition={{ delay: prefersReducedMotion ? 0 : 0.3 }}
                 onClick={() => scrollToSection('brignais-booking')}
-                className="bg-gold text-deep-black w-full px-6 py-4 text-center font-bold uppercase tracking-[0.12em] text-sm hover:bg-gold-light transition-colors mt-2"
+                className="bg-gold text-deep-black w-full px-6 py-4 text-center font-bold uppercase tracking-[0.12em] text-sm hover:bg-gold-light transition-colors mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-off-white focus-visible:ring-offset-2 focus-visible:ring-offset-deep-black"
               >
                 Prendre Rendez-vous
               </motion.button>

@@ -1,11 +1,12 @@
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { MapPin, Phone, Clock } from 'lucide-react';
 import { NAP } from '@/config/nap';
 
 const BrignaisBooking = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section id="brignais-booking" ref={ref} className="py-24 md:py-40 bg-anthracite relative w-full overflow-hidden">
@@ -16,9 +17,9 @@ const BrignaisBooking = () => {
 
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: prefersReducedMotion ? 0.4 : 0.8 }}
           className="text-center mb-14"
         >
           <div className="flex items-center justify-center gap-4 mb-5">
@@ -38,9 +39,9 @@ const BrignaisBooking = () => {
 
           {/* Doctolib CTA */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.98 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 1, delay: 0.2 }}
+            transition={{ duration: prefersReducedMotion ? 0.4 : 1, delay: prefersReducedMotion ? 0 : 0.2 }}
             className="border border-white/5 relative overflow-hidden bg-deep-black flex flex-col items-center justify-center p-10"
             style={{ clipPath: 'polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px))' }}
           >
@@ -71,10 +72,10 @@ const BrignaisBooking = () => {
               href="https://www.doctolib.fr/masseur-kinesitherapeute/lyon/fabrice-ponsoda"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.04, boxShadow: '0 0 30px rgba(0,127,242,0.3)' }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={prefersReducedMotion ? undefined : { scale: 1.04, boxShadow: '0 0 30px rgba(0,127,242,0.3)' }}
+              whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
               onClick={() => window.gtag?.('event', 'cta_doctolib', { event_category: 'conversion', event_label: 'booking_section' })}
-              className="relative z-10 inline-flex items-center gap-3 bg-[#107ACA] text-white px-8 py-4 font-bold uppercase tracking-[0.12em] text-sm transition-all duration-300 hover:bg-[#0D6AB6]"
+              className="relative z-10 inline-flex items-center gap-3 bg-[#107ACA] text-white px-8 py-4 font-bold uppercase tracking-[0.12em] text-sm transition-all duration-300 hover:bg-[#0D6AB6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-deep-black"
               style={{ clipPath: 'polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))' }}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-white">
@@ -91,9 +92,9 @@ const BrignaisBooking = () => {
 
           {/* Info cards */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: prefersReducedMotion ? 0.4 : 0.8, delay: prefersReducedMotion ? 0.1 : 0.3 }}
             className="flex flex-col gap-5"
           >
             {/* Address */}
@@ -124,7 +125,7 @@ const BrignaisBooking = () => {
                 </div>
                 <div>
                   <p className="text-gold/60 text-[9px] tracking-[0.3em] uppercase font-semibold mb-2">Téléphone</p>
-                  <a href={`tel:${NAP.phoneRaw}`} onClick={() => window.gtag?.('event', 'cta_phone', { event_category: 'conversion', event_label: 'booking_section' })} className="text-off-white/80 text-sm font-light hover:text-gold transition-colors duration-300">
+                  <a href={`tel:${NAP.phoneRaw}`} onClick={() => window.gtag?.('event', 'cta_phone', { event_category: 'conversion', event_label: 'booking_section' })} className="text-off-white/80 text-sm font-light hover:text-gold transition-colors duration-300 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-deep-black">
                     {NAP.phoneDisplay}
                   </a>
                 </div>

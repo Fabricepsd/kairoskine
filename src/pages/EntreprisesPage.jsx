@@ -109,7 +109,7 @@ const EntreprisesPage = () => {
         <div
           className="absolute inset-0 pointer-events-none opacity-[0.025]"
           style={{
-            backgroundImage: 'linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(rgba(150, 165, 117,1) 1px, transparent 1px), linear-gradient(90deg, rgba(150, 165, 117,1) 1px, transparent 1px)',
             backgroundSize: '80px 80px',
           }}
         />
@@ -170,7 +170,7 @@ const EntreprisesPage = () => {
           >
             <motion.a
               href={mailtoHref}
-              whileHover={{ scale: 1.04, boxShadow: '0 0 30px rgba(212,175,55,0.3)' }}
+              whileHover={{ scale: 1.04, boxShadow: '0 0 30px rgba(150, 165, 117,0.3)' }}
               whileTap={{ scale: 0.97 }}
               onClick={() => window.gtag?.('event', 'cta_entreprises_hero', { event_category: 'conversion', event_label: 'entreprises_page' })}
               className="relative overflow-hidden bg-gold text-deep-black px-8 py-4 font-bold uppercase tracking-[0.12em] text-sm transition-all duration-300 group"
@@ -235,7 +235,7 @@ const EntreprisesPage = () => {
                   style={{ clipPath: 'polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%)' }}
                 >
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
-                    style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.06) 0%, transparent 65%)' }}
+                    style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(150, 165, 117,0.06) 0%, transparent 65%)' }}
                   />
                   <div className="size-10 bg-anthracite border border-gold/20 flex items-center justify-center mb-5">
                     <Icon className="size-4 text-gold" />
@@ -419,7 +419,7 @@ const EntreprisesPage = () => {
               {/* CTA principal — mailto préqualifié */}
               <motion.a
                 href={mailtoHref}
-                whileHover={{ scale: 1.04, boxShadow: '0 0 30px rgba(212,175,55,0.3)' }}
+                whileHover={{ scale: 1.04, boxShadow: '0 0 30px rgba(150, 165, 117,0.3)' }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => window.gtag?.('event', 'cta_entreprises_bottom', { event_category: 'conversion', event_label: 'entreprises_page' })}
                 className="relative overflow-hidden bg-gold text-deep-black px-8 py-4 font-bold uppercase tracking-[0.12em] text-sm transition-all duration-300 group"

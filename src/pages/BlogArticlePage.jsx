@@ -75,7 +75,7 @@ const SectionRenderer = ({ section }) => {
         <div className="my-8 p-6 bg-anthracite border border-gold/15 relative overflow-hidden"
           style={{ clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))' }}
         >
-          <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 0% 0%, rgba(212,175,55,0.06) 0%, transparent 50%)' }} />
+          <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 0% 0%, rgba(150, 165, 117,0.06) 0%, transparent 50%)' }} />
           <div className="relative z-10">
             <span className="text-2xl mr-2">{section.icon}</span>
             <span className="text-off-white/70 text-sm leading-relaxed font-light">
@@ -334,7 +334,7 @@ const BlogArticlePage = () => {
 
       {/* CTA */}
       <section className="py-20 bg-deep-black relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.04) 0%, transparent 60%)' }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(150, 165, 117,0.04) 0%, transparent 60%)' }} />
         <div className="container mx-auto px-6 md:px-8 text-center relative z-10">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-off-white mb-4">
             Besoin d'un <span className="gold-gradient-text">avis clinique</span> ?

@@ -32,11 +32,11 @@ const BrignaisPage = () => {
         <title>Kinésithérapeute Saint-Genis-Laval, Lyon — Thérapie manuelle & Dry Needling | KAIROS KINÉ</title>
         <meta
           name="description"
-          content="Kinésithérapeute spécialisé à Saint-Genis-Laval, proche Lyon et Oullins. Thérapie manuelle structurelle, dry needling. Traitement court 3-5 séances. Conventionné + dépassement HN. RDV en ligne."
+          content="Kinésithérapeute spécialisé à Saint-Genis-Laval, proche Lyon, Oullins et Brignais. Cervicalgie, NCB, sciatique, tendinopathie résistante : thérapie manuelle structurelle et dry needling. Traitement court 3-5 séances. Conventionné + dépassement HN. RDV en ligne."
         />
         <meta
           name="keywords"
-          content="kinésithérapeute Saint-Genis-Laval, kiné Lyon, Oullins, douleurs musculo-squelettiques, dry needling, thérapie manuelle, cervicalgie, sciatique, lombalgie, tendinopathie, NCB, dépassement honoraires, Fabrice Ponsoda, KAIROS KINÉ"
+          content="kinésithérapeute Saint-Genis-Laval, kiné Brignais, kiné Lyon, Oullins, cervicalgie Saint-Genis-Laval, NCB Lyon sud, dry needling Lyon, thérapie manuelle Saint-Genis-Laval, douleurs musculo-squelettiques, sciatique, lombalgie, tendinopathie résistante, dépassement honoraires, Fabrice Ponsoda, KAIROS KINÉ"
         />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Fabrice PONSODA — KAIROS KINÉ" />
@@ -44,19 +44,19 @@ const BrignaisPage = () => {
 
         <meta property="og:type" content="website" />
         <meta property="og:title" content="KAIROS KINÉ — Kinésithérapeute Saint-Genis-Laval & Lyon" />
-        <meta property="og:description" content="Thérapie manuelle, dry needling. Traitement court 3-5 séances. Prise en charge individuelle 30 min. Saint-Genis-Laval, proche Lyon." />
+        <meta property="og:description" content="Cervicalgie, NCB, sciatique, tendinopathie résistante : thérapie manuelle et dry needling. Traitement court 3-5 séances, prise en charge individuelle 30 min. Saint-Genis-Laval, proche Lyon et Brignais." />
         <meta property="og:url" content="https://kairoskine.fr" />
         <meta property="og:locale" content="fr_FR" />
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="KAIROS KINÉ — Kinésithérapeute Saint-Genis-Laval & Lyon" />
-        <meta name="twitter:description" content="Thérapie manuelle, dry needling. Traitement court 3-5 séances. Saint-Genis-Laval, proche Lyon et Oullins." />
+        <meta name="twitter:description" content="Cervicalgie, NCB, sciatique : thérapie manuelle et dry needling. Traitement court 3-5 séances. Saint-Genis-Laval, proche Lyon, Oullins et Brignais." />
 
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": ["LocalBusiness", "HealthAndBeautyBusiness"],
           "name": `${NAP.brandName} — ${NAP.city}`,
-          "description": `Cabinet de kinésithérapie spécialisé en thérapie manuelle structurelle et dry needling à ${NAP.city}, proche Lyon. Traitement court et intensif des douleurs musculo-squelettiques. Prise en charge individuelle 30 minutes.`,
+          "description": `Cabinet de kinésithérapie spécialisé en thérapie manuelle structurelle et dry needling à ${NAP.city}, proche Lyon, Oullins et Brignais. Cervicalgie, NCB, sciatique, tendinopathie résistante : traitement court et intensif. Prise en charge individuelle 30 minutes.`,
           "url": NAP.siteUrl,
           "telephone": NAP.phoneRaw,
           "priceRange": "€€",
@@ -81,7 +81,8 @@ const BrignaisPage = () => {
             { "@type": "Place", "name": "Saint-Genis-Laval" },
             { "@type": "Place", "name": "Oullins" },
             { "@type": "Place", "name": "Pierre-Bénite" },
-            { "@type": "Place", "name": "Vourles" }
+            { "@type": "Place", "name": "Vourles" },
+            { "@type": "Place", "name": "Brignais" }
           ]
         })}</script>
       </Helmet>

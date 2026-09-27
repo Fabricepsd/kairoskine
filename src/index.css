@@ -12,19 +12,19 @@
     --card-foreground: 0 0% 96%;
     --popover: 0 0% 4%;
     --popover-foreground: 0 0% 96%;
-    --primary: 46 65% 52%;
+    --primary: 80 21% 55%;
     --primary-foreground: 0 0% 4%;
     --secondary: 0 0% 16%;
     --secondary-foreground: 0 0% 96%;
     --muted: 0 0% 16%;
     --muted-foreground: 0 0% 60%;
-    --accent: 46 65% 52%;
+    --accent: 80 21% 55%;
     --accent-foreground: 0 0% 4%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 96%;
     --border: 0 0% 12%;
     --input: 0 0% 16%;
-    --ring: 46 65% 52%;
+    --ring: 80 21% 55%;
     --radius: 0.5rem;
   }
 }
@@ -76,12 +76,12 @@
 
   .gold-gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #b89a2e 0%, #D4AF37 35%, #f0d060 60%, #D4AF37 100%);
+    background-image: linear-gradient(135deg, #7C8A5E 0%, #96A575 35%, #C3CDA0 60%, #96A575 100%);
   }
 
   .gold-gradient-text-animated {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(90deg, #b89a2e, #D4AF37, #f0d060, #D4AF37, #b89a2e);
+    background-image: linear-gradient(90deg, #7C8A5E, #96A575, #C3CDA0, #96A575, #7C8A5E);
     background-size: 300% 100%;
     animation: shimmer 4s ease-in-out infinite;
   }
@@ -95,22 +95,22 @@
   }
 
   .glass-gold {
-    background: rgba(212, 175, 55, 0.05);
+    background: rgba(150, 165, 117, 0.05);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(150, 165, 117, 0.15);
   }
 
   /* ---- Glows ---- */
   .glow-gold {
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.15), 0 0 60px rgba(212, 175, 55, 0.05);
+    box-shadow: 0 0 30px rgba(150, 165, 117, 0.15), 0 0 60px rgba(150, 165, 117, 0.05);
   }
 
   .glow-gold-strong {
-    box-shadow: 0 0 40px rgba(212, 175, 55, 0.3), 0 0 80px rgba(212, 175, 55, 0.1);
+    box-shadow: 0 0 40px rgba(150, 165, 117, 0.3), 0 0 80px rgba(150, 165, 117, 0.1);
   }
 
   .text-glow-gold {
-    text-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
+    text-shadow: 0 0 40px rgba(150, 165, 117, 0.5);
   }
 
   /* ---- Borders ---- */
@@ -125,7 +125,7 @@
     position: absolute;
     inset: -1px;
     border-radius: inherit;
-    background: linear-gradient(135deg, rgba(212,175,55,0.4), transparent 40%, rgba(212,175,55,0.2));
+    background: linear-gradient(135deg, rgba(150, 165, 117,0.4), transparent 40%, rgba(150, 165, 117,0.2));
     z-index: -1;
   }
 
@@ -147,7 +147,7 @@
   /* ---- Dividers ---- */
   .divider-gold {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent);
+    background: linear-gradient(90deg, transparent, rgba(150, 165, 117,0.4), transparent);
   }
 
   /* ---- 3D Card utils ---- */
@@ -183,9 +183,9 @@
 }
 
 @keyframes pulse-ring {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-  70% { transform: scale(1); box-shadow: 0 0 0 14px rgba(212, 175, 55, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(150, 165, 117, 0.4); }
+  70% { transform: scale(1); box-shadow: 0 0 0 14px rgba(150, 165, 117, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(150, 165, 117, 0); }
 }
 
 @keyframes scanline {
@@ -213,16 +213,29 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(212, 175, 55, 0.3);
+  background: rgba(150, 165, 117, 0.3);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(212, 175, 55, 0.6);
+  background: rgba(150, 165, 117, 0.6);
 }
 
 /* ---- Selection ---- */
 ::selection {
-  background: rgba(212, 175, 55, 0.3);
+  background: rgba(150, 165, 117, 0.3);
   color: #F5F5F5;
+}
+/* ---- Reduced motion safety net ----
+   Framer Motion components with explicit useReducedMotion() checks (Hero, About,
+   Pricing) already tailor their own motion. This catches every CSS-driven
+   animation/transition sitewide (hover states, .animate-pulse-ring, shimmer,
+   scroll-behavior) for components not yet individually audited. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

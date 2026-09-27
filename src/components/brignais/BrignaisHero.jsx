@@ -1,11 +1,23 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useReducedMotion, useSpring, useMotionTemplate } from 'framer-motion';
 
 const BrignaisHero = () => {
   const ref = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '40%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const slatScroll = useSpring(scrollYProgress, { stiffness: 60, damping: 20, restDelta: 0.001 });
+
+  // The slatted wall opens as you scroll past it — leaving the threshold and
+  // entering the practice, literally. A single hairline pattern whose repeat
+  // interval widens as you scroll (the slats spreading apart), with a soft
+  // glow growing behind it — the scroll position IS the door opening, drawn
+  // as one clean texture rather than stacked elements.
+  const slatUnit = useTransform(slatScroll, [0, 1], prefersReducedMotion ? [44, 44] : [44, 86]);
+  const slatsBg = useMotionTemplate`repeating-linear-gradient(90deg, rgba(150,165,117,0.16) 0px, rgba(150,165,117,0.16) 1.5px, transparent 1.5px, transparent ${slatUnit}px)`;
+  const slatsOpacity = useTransform(slatScroll, [0, 0.9], prefersReducedMotion ? [1, 1] : [1, 0.4]);
+  const glowOpacity = useTransform(slatScroll, [0.15, 1], prefersReducedMotion ? [0, 0] : [0, 0.14]);
+  const contentY = useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? ['0%', '0%'] : ['0%', '40%']);
+  const opacity = useTransform(scrollYProgress, [0, 0.6], prefersReducedMotion ? [1, 1] : [1, 0]);
 
   const scrollToBooking = () => {
     const el = document.getElementById('brignais-booking');
@@ -17,14 +29,14 @@ const BrignaisHero = () => {
 
   const containerVariants = {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.1, delayChildren: 0.3 } }
+    visible: { transition: { staggerChildren: prefersReducedMotion ? 0.04 : 0.1, delayChildren: prefersReducedMotion ? 0.1 : 0.3 } }
   };
 
   const wordVariants = {
-    hidden: { opacity: 0, y: 40, filter: 'blur(8px)' },
+    hidden: prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 40, filter: 'blur(8px)' },
     visible: {
       opacity: 1, y: 0, filter: 'blur(0px)',
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+      transition: { duration: prefersReducedMotion ? 0.3 : 0.8, ease: [0.16, 1, 0.3, 1] }
     }
   };
 
@@ -32,8 +44,8 @@ const BrignaisHero = () => {
     <section ref={ref} id="brignais-hero" className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 z-0 bg-deep-black">
-        <div className="absolute top-[-100px] right-[-100px] w-[800px] h-[800px] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(0,0,0,0) 60%)' }} />
-        <div className="absolute bottom-[-100px] left-[-100px] w-[600px] h-[600px] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.04) 0%, rgba(0,0,0,0) 60%)' }} />
+        <div className="absolute top-[-100px] right-[-100px] w-[800px] h-[800px] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(150, 165, 117,0.08) 0%, rgba(0,0,0,0) 60%)' }} />
+        <div className="absolute bottom-[-100px] left-[-100px] w-[600px] h-[600px] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(150, 165, 117,0.04) 0%, rgba(0,0,0,0) 60%)' }} />
       </div>
 
       {/* Overlays */}
@@ -44,21 +56,27 @@ const BrignaisHero = () => {
 
       {/* Floating glows */}
       <motion.div
-        animate={{ opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        animate={prefersReducedMotion ? { opacity: 0.4 } : { opacity: [0.3, 0.6, 0.3] }}
+        transition={prefersReducedMotion ? undefined : { duration: 4, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute top-1/4 right-[10%] w-[400px] h-[400px] z-[1] pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.06) 0%, rgba(0,0,0,0) 50%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(150, 165, 117,0.06) 0%, rgba(0,0,0,0) 50%)' }}
       />
 
-      {/* Grid lines */}
-      <div className="absolute inset-0 z-[1] pointer-events-none opacity-[0.03]"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)',
-          backgroundSize: '80px 80px'
-        }}
-      />
-
-
+      {/* Background — the treatment room's slatted wall, opening as you enter.
+          At rest it's a fine hairline pattern (the closed wall). Scroll past
+          the Hero — moving from the doorway into the practice — and the
+          lines spread apart while a soft glow grows behind them, as if
+          light from the room beyond were reaching through as the wall
+          opens. One clean texture, not stacked pieces; the scroll position
+          IS the opening, nothing loops on a timer. Reduced motion keeps the
+          wall closed and static — still legible as the room, at rest. */}
+      <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
+        <motion.div
+          className="absolute inset-0"
+          style={{ background: 'radial-gradient(circle at 50% 50%, rgba(150,165,117,0.35) 0%, rgba(0,0,0,0) 65%)', opacity: glowOpacity }}
+        />
+        <motion.div className="absolute inset-0" style={{ backgroundImage: slatsBg, opacity: slatsOpacity }} />
+      </div>
 
       {/* Content */}
       <motion.div
@@ -109,7 +127,7 @@ const BrignaisHero = () => {
           transition={{ duration: 0.8, delay: 1.1 }}
           className="text-base sm:text-lg md:text-xl text-off-white/70 mb-12 font-light max-w-2xl mx-auto leading-relaxed tracking-wide"
         >
-          Thérapie manuelle ostéo-articulaire & Dry Needling — résultats rapides, prise en charge individuelle.
+          Protocoles courts (3–5 séances) combinant dry needling, thérapie manuelle et exercices ciblés pour une récupération rapide. Prise en charge individuelle 30 minutes.
         </motion.p>
 
         {/* CTA */}
@@ -120,10 +138,10 @@ const BrignaisHero = () => {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <motion.button
-            whileHover={{ scale: 1.04, boxShadow: '0 0 30px rgba(212,175,55,0.3)' }}
+            whileHover={{ scale: 1.04, boxShadow: '0 0 30px rgba(150, 165, 117,0.3)' }}
             whileTap={{ scale: 0.97 }}
             onClick={scrollToBooking}
-            className="relative overflow-hidden bg-gold text-deep-black px-8 py-4 font-bold uppercase tracking-[0.12em] text-sm transition-all duration-300 group"
+            className="relative overflow-hidden bg-gold text-deep-black px-8 py-4 font-bold uppercase tracking-[0.12em] text-sm transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-deep-black"
             style={{ clipPath: 'polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))' }}
           >
             <span className="relative z-10">Prendre rendez-vous</span>
@@ -134,7 +152,7 @@ const BrignaisHero = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => document.getElementById('brignais-about')?.scrollIntoView({ behavior: 'smooth' })}
-            className="text-off-white/60 hover:text-gold text-sm uppercase tracking-[0.15em] font-medium flex items-center gap-2 transition-colors duration-300"
+            className="text-off-white/60 hover:text-gold text-sm uppercase tracking-[0.15em] font-medium flex items-center gap-2 transition-colors duration-300 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-deep-black"
           >
             Découvrir
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="translate-y-[1px]">
@@ -154,11 +172,15 @@ const BrignaisHero = () => {
         <span className="text-[9px] text-white/30 uppercase tracking-[0.4em]">Défiler</span>
         <div className="relative w-[1px] h-14 overflow-hidden">
           <div className="absolute inset-0 bg-white/10" />
-          <motion.div
-            className="absolute inset-x-0 top-0 h-full bg-gold"
-            animate={{ y: ['−100%', '200%'] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
-          />
+          {prefersReducedMotion ? (
+            <div className="absolute inset-x-0 top-0 h-1/3 bg-gold" />
+          ) : (
+            <motion.div
+              className="absolute inset-x-0 top-0 h-full bg-gold"
+              animate={{ y: ['-100%', '200%'] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
+            />
+          )}
         </div>
       </motion.div>
     </section>

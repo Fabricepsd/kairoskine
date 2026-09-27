@@ -55,7 +55,7 @@ const blogArticles = [
         items: [
           '**Consultation individuelle de 30 min** — vous n\'êtes jamais 3 patients en même temps',
           '**Techniques spécialisées** — [thérapie manuelle](/blog/therapie-manuelle-kinesitherapeute-lyon) structurelle, [dry needling](/blog/dry-needling-kinesitherapie-lyon), techniques neurodynamiques',
-          '**Protocole court** — 5 à 8 séances au lieu de 20',
+          '**Protocole court** — 3 à 5 séances au lieu de 20',
           '**Formation avancée** — Master en Thérapie Manuelle Structurelle (UCL Louvain)',
         ],
       },
@@ -367,7 +367,7 @@ const blogArticles = [
       },
       {
         type: 'paragraph',
-        content: 'C\'est le choix de KAIROS KINÉ à Brignais : 30 € de dépassement, 30 min par patient, [thérapie manuelle](/blog/therapie-manuelle-kinesitherapeute-lyon) et [dry needling](/blog/dry-needling-kinesitherapie-lyon) si indiqué, protocole de 5-8 séances.',
+        content: 'C\'est le choix de KAIROS KINÉ à Brignais : 30 € de dépassement, 30 min par patient, [thérapie manuelle](/blog/therapie-manuelle-kinesitherapeute-lyon) et [dry needling](/blog/dry-needling-kinesitherapie-lyon) si indiqué, protocole de 3-5 séances.',
       },
       {
         type: 'evidence',
@@ -380,7 +380,7 @@ const blogArticles = [
         items: [
           'Kiné à 17 €/séance, 30 patients/jour = **10 min pour vous**, souvent en salle commune',
           'Kiné en dépassement, 12-15 patients/jour = **30 min dédiées**, techniques manuelles réelles',
-          'Protocole standard : **15-20 séances** (3-4 mois) vs protocole intensif : **5-8 séances** (6-8 semaines)',
+          'Protocole standard : **15-20 séances** (3-4 mois) vs protocole intensif : **3-5 séances** (3-5 semaines)',
           'Le [coût total](/blog/depassement-honoraires-kinesitherapeute-lyon) est souvent **inférieur** avec moins de séances',
         ],
       },
@@ -450,7 +450,7 @@ const blogArticles = [
       ]},
       { type: 'evidence', title: 'Thérapie manuelle et lombalgie', content: '**Coulter et al. (2018, Spine Journal)** — méta-analyse de 26 essais randomisés : la thérapie manuelle réduit significativement la douleur lombaire vs soins habituels. **Rubinstein et al. (2019, Cochrane)** confirment : la manipulation vertébrale produit des effets similaires aux traitements recommandés pour la lombalgie aiguë et chronique.' },
       { type: 'heading', level: 2, content: 'Mon approche pour le mal de dos' },
-      { type: 'paragraph', content: 'Au cabinet KAIROS KINÉ à Brignais, chaque patient lombalgique bénéficie d\'un **bilan de 30 minutes** : anamnèse, examen neurologique, tests de mobilité segmentaire. Le traitement combine [thérapie manuelle](/blog/therapie-manuelle-kinesitherapeute-lyon), [dry needling](/blog/dry-needling-kinesitherapie-lyon) si indiqué, et exercices ciblés. Protocole : **5 à 8 séances**. [Prendre rendez-vous →](/#brignais-booking)' },
+      { type: 'paragraph', content: 'Au cabinet KAIROS KINÉ à Brignais, chaque patient lombalgique bénéficie d\'un **bilan de 30 minutes** : anamnèse, examen neurologique, tests de mobilité segmentaire. Le traitement combine [thérapie manuelle](/blog/therapie-manuelle-kinesitherapeute-lyon), [dry needling](/blog/dry-needling-kinesitherapie-lyon) si indiqué, et exercices ciblés. Protocole : **3 à 5 séances**. [Prendre rendez-vous →](/#brignais-booking)' },
       { type: 'callout', icon: '⚠️', content: '**Quand consulter en urgence** : perte de sensibilité périnéale, troubles urinaires/fécaux (syndrome de la queue de cheval), perte de force progressive dans les jambes, fièvre + douleur dorsale. → Urgences immédiatement.' },
     ],
   },

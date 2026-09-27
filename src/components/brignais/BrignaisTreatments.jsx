@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 
 const treatments = [
-  { icon: '🔹', title: 'Cervicalgies & Torticolis', desc: 'Douleurs cervicales aiguës et subaiguës, raideurs du cou.' },
-  { icon: '🔹', title: 'Névralgies cervico-brachiales', desc: 'NCB — douleurs irradiant du cou vers le bras.' },
-  { icon: '🔹', title: 'Tendinopathies', desc: 'Y compris résistantes au traitement classique et chroniques.' },
-  { icon: '🔹', title: 'Sciatiques', desc: 'Douleurs irradiant dans le membre inférieur, d\'origine lombaire.' },
-  { icon: '🔹', title: 'Lombalgies aiguës', desc: 'Douleurs lombaires invalidantes, blocages du bas du dos.' },
-  { icon: '🔹', title: 'Raideurs post-blessure', desc: 'Récupération de mobilité après blessure musculo-squelettique.' },
+  { title: 'Cervicalgies & Torticolis', desc: 'Douleurs cervicales aiguës et subaiguës, raideurs du cou.' },
+  { title: 'Névralgies cervico-brachiales', desc: 'NCB — douleurs irradiant du cou vers le bras.' },
+  { title: 'Tendinopathies', desc: 'Y compris résistantes au traitement classique et chroniques.' },
+  { title: 'Sciatiques', desc: 'Douleurs irradiant dans le membre inférieur, d\'origine lombaire.' },
+  { title: 'Lombalgies aiguës', desc: 'Douleurs lombaires invalidantes, blocages du bas du dos.' },
+  { title: 'Raideurs post-blessure', desc: 'Récupération de mobilité après blessure musculo-squelettique.' },
 ];
 
 const notTreated = [
@@ -26,6 +26,7 @@ const notTreated = [
 const BrignaisTreatments = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section ref={ref} id="brignais-treatments" className="py-24 md:py-40 bg-deep-black relative w-full overflow-hidden">
@@ -33,9 +34,9 @@ const BrignaisTreatments = () => {
 
       <div className="container mx-auto px-6 md:px-8 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: prefersReducedMotion ? 0.4 : 0.8 }}
           className="mb-16"
         >
           <div className="flex items-center gap-4 mb-5">
@@ -55,17 +56,17 @@ const BrignaisTreatments = () => {
           {treatments.map((item, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 40 }}
+              initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.1 + index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -4 }}
+              transition={{ duration: prefersReducedMotion ? 0.4 : 0.7, delay: prefersReducedMotion ? index * 0.04 : 0.1 + index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={prefersReducedMotion ? undefined : { y: -4 }}
               className="relative p-7 bg-anthracite border border-white/5 hover:border-gold/20 transition-all duration-500 group"
               style={{ clipPath: 'polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%)' }}
             >
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
-                style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.06) 0%, transparent 65%)' }}
+                style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(150, 165, 117,0.06) 0%, transparent 65%)' }}
               />
-              <div className="text-gold text-lg mb-3">{item.icon}</div>
+              <span className="block w-2 h-2 rounded-full bg-gold mb-4" style={{ boxShadow: '0 0 8px rgba(150,165,117,0.5)' }} />
               <h3 className="text-off-white font-semibold uppercase tracking-wider text-sm mb-3 group-hover:text-gold transition-colors duration-300">
                 {item.title}
               </h3>
@@ -79,9 +80,9 @@ const BrignaisTreatments = () => {
 
         {/* What I don't treat */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.6 }}
+          transition={{ duration: prefersReducedMotion ? 0.4 : 0.7, delay: prefersReducedMotion ? 0.2 : 0.6 }}
           className="max-w-2xl mx-auto"
         >
           <div className="bg-anthracite/50 border border-white/5 p-8"

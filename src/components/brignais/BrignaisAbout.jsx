@@ -1,10 +1,11 @@
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { NAP } from '@/config/nap';
 
 const BrignaisAbout = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section ref={ref} id="brignais-about" className="py-24 md:py-40 bg-anthracite relative w-full overflow-hidden">
@@ -13,7 +14,7 @@ const BrignaisAbout = () => {
 
       {/* Watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-        <span className="font-display text-[200px] md:text-[280px] font-bold text-white/[0.015] select-none whitespace-nowrap">
+        <span className="font-display text-[90px] sm:text-[140px] md:text-[200px] lg:text-[280px] font-bold text-white/[0.015] select-none whitespace-nowrap">
           SAINT-GENIS
         </span>
       </div>
@@ -23,30 +24,41 @@ const BrignaisAbout = () => {
 
           {/* Photo */}
           <motion.div
-            initial={{ opacity: 0, x: -60 }}
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -60 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: prefersReducedMotion ? 0.4 : 1, ease: [0.16, 1, 0.3, 1] }}
             className="relative w-full flex justify-center lg:justify-start"
           >
             <div className="relative w-full max-w-[420px]">
-              <div className="absolute inset-0 rounded-full scale-150 pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(0,0,0,0) 70%)' }} />
+              <div className="absolute inset-0 rounded-full scale-150 pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(150, 165, 117,0.08) 0%, rgba(0,0,0,0) 70%)' }} />
+              {!prefersReducedMotion && (
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                  className="absolute inset-[-16px] rounded-full pointer-events-none"
+                  style={{ border: '1px dashed rgba(150, 165, 117,0.25)' }}
+                />
+              )}
               <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-[-16px] rounded-full pointer-events-none"
-                style={{ border: '1px dashed rgba(212,175,55,0.25)' }}
-              />
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+                animate={prefersReducedMotion ? { y: 0 } : { y: [0, -8, 0] }}
+                transition={prefersReducedMotion ? undefined : { duration: 5, repeat: Infinity, ease: 'easeInOut' }}
                 className="relative overflow-hidden rounded-full"
               >
-                <motion.div
-                  initial={{ x: '0%' }}
-                  animate={isInView ? { x: '100%' } : {}}
-                  transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute inset-0 bg-anthracite z-10"
-                />
+                {prefersReducedMotion ? (
+                  <motion.div
+                    initial={{ opacity: 1 }}
+                    animate={isInView ? { opacity: 0 } : {}}
+                    transition={{ duration: 0.4 }}
+                    className="absolute inset-0 bg-anthracite z-10"
+                  />
+                ) : (
+                  <motion.div
+                    initial={{ x: '0%' }}
+                    animate={isInView ? { x: '100%' } : {}}
+                    transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute inset-0 bg-anthracite z-10"
+                  />
+                )}
                 <img
                   src="/photofab-new.jpg"
                   alt="Fabrice PONSODA — Kinésithérapeute spécialisé Saint-Genis-Laval"
@@ -61,16 +73,16 @@ const BrignaisAbout = () => {
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 1.5 }}
                 className="absolute -bottom-2 -left-2 size-3 rounded-full bg-gold"
-                style={{ boxShadow: '0 0 12px rgba(212,175,55,0.6)' }}
+                style={{ boxShadow: '0 0 12px rgba(150, 165, 117,0.6)' }}
               />
             </div>
           </motion.div>
 
           {/* Text */}
           <motion.div
-            initial={{ opacity: 0, x: 60 }}
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: 60 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: prefersReducedMotion ? 0.4 : 1, delay: prefersReducedMotion ? 0 : 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="flex items-center gap-4 mb-6">
               <div className="h-[1px] w-12 bg-gold/50" />
@@ -98,7 +110,7 @@ const BrignaisAbout = () => {
 
               <blockquote className="border-l-2 border-gold/50 pl-6 my-8">
                 <p className="font-display text-xl md:text-2xl italic text-off-white/80 leading-snug">
-                  "Prise en charge individuelle. Protocole court. Résultat mesurable."
+                  "3–5 séances. Dry needling. Thérapie manuelle. Exercices ciblés. Récupération rapide."
                 </p>
               </blockquote>
             </div>

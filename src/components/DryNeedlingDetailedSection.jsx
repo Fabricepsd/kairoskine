@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { Check } from 'lucide-react';
 
 const benefits = [
@@ -14,8 +14,9 @@ const DryNeedlingDetailedSection = () => {
   const ref = useRef(null);
   const imgRef = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
-  const imgY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
+  const imgY = useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? ['0%', '0%'] : ['-8%', '8%']);
 
   return (
     <section
@@ -27,8 +28,8 @@ const DryNeedlingDetailedSection = () => {
 
       {/* Large background text */}
       <div className="absolute inset-0 flex items-center justify-start pointer-events-none overflow-hidden pl-4">
-        <span className="font-display text-[160px] md:text-[220px] font-bold uppercase leading-none select-none"
-          style={{ WebkitTextStroke: '1px rgba(212,175,55,0.04)', color: 'transparent' }}>
+        <span className="font-display text-[70px] sm:text-[110px] md:text-[160px] lg:text-[220px] font-bold uppercase leading-none select-none"
+          style={{ WebkitTextStroke: '1px rgba(150, 165, 117,0.04)', color: 'transparent' }}>
           NEEDLING
         </span>
       </div>
@@ -38,9 +39,9 @@ const DryNeedlingDetailedSection = () => {
 
           {/* Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: prefersReducedMotion ? 0.4 : 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="flex items-center gap-4 mb-6">
               <div className="h-[1px] w-8 bg-gold/60" />
@@ -65,9 +66,9 @@ const DryNeedlingDetailedSection = () => {
                 {benefits.map((item, i) => (
                   <motion.li
                     key={i}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.4 + i * 0.08 }}
+                    transition={{ duration: prefersReducedMotion ? 0.3 : 0.5, delay: prefersReducedMotion ? i * 0.04 : 0.4 + i * 0.08 }}
                     className="flex items-start gap-4 group"
                   >
                     <span className="mt-0.5 size-5 bg-gold/10 border border-gold/20 rounded flex items-center justify-center shrink-0 group-hover:bg-gold/20 transition-colors duration-300">
@@ -84,21 +85,30 @@ const DryNeedlingDetailedSection = () => {
 
           {/* Image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.92 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            transition={{ duration: prefersReducedMotion ? 0.4 : 1.2, ease: [0.16, 1, 0.3, 1], delay: prefersReducedMotion ? 0 : 0.1 }}
             className="relative w-full"
           >
             <div className="absolute -inset-4 border border-gold/8 pointer-events-none" />
 
             <div className="relative overflow-hidden" style={{ clipPath: 'polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px))' }}>
               {/* Wipe reveal */}
-              <motion.div
-                initial={{ x: '0%' }}
-                animate={isInView ? { x: '100%' } : {}}
-                transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 bg-deep-black z-10"
-              />
+              {prefersReducedMotion ? (
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  animate={isInView ? { opacity: 0 } : {}}
+                  transition={{ duration: 0.4 }}
+                  className="absolute inset-0 bg-deep-black z-10"
+                />
+              ) : (
+                <motion.div
+                  initial={{ x: '0%' }}
+                  animate={isInView ? { x: '100%' } : {}}
+                  transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute inset-0 bg-deep-black z-10"
+                />
+              )}
 
               <motion.div style={{ y: imgY }} ref={imgRef} className="will-change-transform">
                 <img

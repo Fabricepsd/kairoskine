@@ -84,7 +84,7 @@ const ArticleCard = ({ article, index }) => {
         {/* Hover glow */}
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.06) 0%, transparent 65%)' }}
+          style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(150, 165, 117,0.06) 0%, transparent 65%)' }}
         />
       </Link>
     </motion.div>
@@ -149,7 +149,7 @@ const BlogPage = () => {
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
           <span
             className="font-display text-[140px] md:text-[220px] font-bold uppercase leading-none select-none"
-            style={{ WebkitTextStroke: '1px rgba(212,175,55,0.03)', color: 'transparent' }}
+            style={{ WebkitTextStroke: '1px rgba(150, 165, 117,0.03)', color: 'transparent' }}
           >
             BLOG
           </span>
@@ -198,7 +198,7 @@ const BlogPage = () => {
 
       {/* CTA section */}
       <section className="py-20 md:py-32 bg-anthracite relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.05) 0%, transparent 60%)' }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(150, 165, 117,0.05) 0%, transparent 60%)' }} />
         <div className="container mx-auto px-6 md:px-8 text-center relative z-10">
           <h2 className="font-display text-3xl md:text-5xl font-bold text-off-white mb-6">
             Une question sur votre <span className="gold-gradient-text">douleur</span> ?

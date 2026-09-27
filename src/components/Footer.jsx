@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instagram, MapPin, Mail, Phone } from 'lucide-react';
+import { Instagram, MapPin, Mail, Phone, Newspaper } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { NAP } from '@/config/nap';
 
@@ -21,7 +21,7 @@ const Footer = () => {
               src="/logo-kairos-transparent.png"
               alt="KAIROS KINÉ logo"
               className="h-16 w-16 object-contain"
-              style={{ filter: 'drop-shadow(0 0 12px rgba(212,175,55,0.15))' }}
+              style={{ filter: 'drop-shadow(0 0 12px rgba(150, 165, 117,0.15))' }}
             />
             <div>
               <h3 className="font-display text-3xl md:text-4xl font-bold text-off-white tracking-[0.1em] uppercase mb-0.5">
@@ -95,7 +95,7 @@ const Footer = () => {
                 to="/blog"
                 className="flex items-center gap-3 text-off-white/50 hover:text-gold transition-colors duration-300"
               >
-                <span className="size-4 text-gold shrink-0 text-center text-xs font-bold">✎</span>
+                <Newspaper className="size-4 text-gold shrink-0" />
                 <span className="text-sm font-light">Blog</span>
               </Link>
             </div>
@@ -111,13 +111,13 @@ const Footer = () => {
             <Link to="/entreprises" className="text-gold/40 hover:text-gold text-xs transition-colors duration-300 tracking-wider font-medium">
               Entreprises
             </Link>
-            <Link to="/blog" className="text-white/25 hover:text-gold text-xs transition-colors duration-300 tracking-wider">
+            <Link to="/blog" className="text-white/25 hover:text-gold text-xs transition-colors duration-300 tracking-wider inline-block py-2 -my-2">
               Blog
             </Link>
-            <Link to="/mentions-legales" className="text-white/25 hover:text-gold text-xs transition-colors duration-300 tracking-wider">
+            <Link to="/mentions-legales" className="text-white/25 hover:text-gold text-xs transition-colors duration-300 tracking-wider inline-block py-2 -my-2">
               Mentions légales
             </Link>
-            <Link to="/confidentialite" className="text-white/25 hover:text-gold text-xs transition-colors duration-300 tracking-wider">
+            <Link to="/confidentialite" className="text-white/25 hover:text-gold text-xs transition-colors duration-300 tracking-wider inline-block py-2 -my-2">
               Confidentialité
             </Link>
           </div>
