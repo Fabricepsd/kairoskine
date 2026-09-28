@@ -44,6 +44,12 @@ const BrignaisHero = () => {
     <section ref={ref} id="brignais-hero" className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 z-0 bg-deep-black">
+        <img
+          src="/hero-slats-bg.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+        />
         <div className="absolute top-[-100px] right-[-100px] w-[800px] h-[800px] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(150, 165, 117,0.08) 0%, rgba(0,0,0,0) 60%)' }} />
         <div className="absolute bottom-[-100px] left-[-100px] w-[600px] h-[600px] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(150, 165, 117,0.04) 0%, rgba(0,0,0,0) 60%)' }} />
       </div>
