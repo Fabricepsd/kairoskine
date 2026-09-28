@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { NAP, NAP_POSTAL_ADDRESS } from '@/config/nap';
 import BrignaisHero from '@/components/brignais/BrignaisHero';
 import BrignaisAbout from '@/components/brignais/BrignaisAbout';
+import BrignaisCabinet from '@/components/brignais/BrignaisCabinet';
 import BrignaisTreatments from '@/components/brignais/BrignaisTreatments';
 import DryNeedlingDetailedSection from '@/components/DryNeedlingDetailedSection';
 import ManualTherapyDetailedSection from '@/components/ManualTherapyDetailedSection';
@@ -89,6 +90,7 @@ const BrignaisPage = () => {
 
       <BrignaisHero />
       <BrignaisAbout />
+      <BrignaisCabinet />
       <BrignaisTreatments />
       <DryNeedlingDetailedSection />
       <ManualTherapyDetailedSection />
