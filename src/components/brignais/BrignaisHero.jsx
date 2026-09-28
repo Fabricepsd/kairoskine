@@ -127,7 +127,7 @@ const BrignaisHero = () => {
           transition={{ duration: 0.8, delay: 1.1 }}
           className="text-base sm:text-lg md:text-xl text-off-white/70 mb-12 font-light max-w-2xl mx-auto leading-relaxed tracking-wide"
         >
-          Protocoles courts (3–5 séances) combinant dry needling, thérapie manuelle et exercices ciblés pour une récupération rapide. Prise en charge individuelle 30 minutes.
+          Dry needling, thérapie manuelle et rééducation ciblée, combinés dans un protocole court : l'objectif n'est pas de vous revoir 15 fois. Prise en charge individuelle 30 minutes.
         </motion.p>
 
         {/* CTA */}
